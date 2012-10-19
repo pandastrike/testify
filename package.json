@@ -1,0 +1,12 @@
+{
+  "name": "testify",
+  "version": "0.1.0",
+  "description": "near trivial testing, sync and async",
+  "main": "testify.coffee",
+  "dependencies":{
+    "colors": "0.6.x"
+   },
+  "repository": "",
+  "author": "",
+  "license": "MIT"
+}
