@@ -4,13 +4,8 @@ EventEmitter = require("events").EventEmitter
 
 module.exports = Testify =
   test: (name, fn) ->
-    context = new Context(name)
-    context.emitter.once "done", ->
-      console.log "suite done"
-      process.nextTick ->
-        context.report()
-        Testify.emitter.emit("done")
-    fn(context)
+    suite = new Context(name)
+    fn(suite)
   emitter: new EventEmitter()
   count: 0
   once: (args...) ->
@@ -27,19 +22,72 @@ class Context
       @level = @parent.level + 1
     else
       @level = 0
-    @failed = false
-    @children = []
-    @assert = {}
+
     @finished = false
+    @failed = false
+
+    @children = []
+
+    @assert = {}
     for name, method of assert
       @assert[name] = @wrap_assertion(name, method)
 
+    if !@parent
+      @emitter.once "done", =>
+        process.nextTick =>
+          console.log()
+          @report()
+
   wrap_assertion: (name, fn) ->
     (args...) =>
-      try
-        fn(args...)
-      catch error
+      try fn(args...) catch error
         @fail(error)
+
+  test: (description, fn) ->
+    context = new Context(description, @)
+    @children.push(context)
+    context.emitter.once "done", =>
+      @done()
+
+    if fn.length == 0
+      context.sync(fn)
+      context.pass()
+    else
+      context.async(fn)
+
+  sync: (fn) ->
+    try fn() catch error
+      @fail(error)
+
+  async: (fn) ->
+    Testify.count++
+    @emitter.once "done", ->
+      Testify.count--
+
+    try
+      fn(@)
+    catch error
+      @fail(error)
+
+  pass: ->
+    process.stdout.write ".".green
+    @done()
+
+  fail: (error) ->
+    process.stdout.write "F".red
+    @done()
+    @propagate_failure(error)
+
+  propagate_failure: (error) ->
+    @failed = error
+    @parent?.propagate_failure("subtest failures")
+
+  done: () ->
+    @finished = true
+    flag = @children.every (child) ->
+      child.finished || child.failed
+    if flag
+      @emitter.emit("done")
 
   report: ->
     suite =
@@ -60,12 +108,10 @@ class Context
 
       if test.failed == false
         line = indent + test.name.green
-      else if test.failed == true
-        line = indent + "#{test.name} - subtest failures".red
       else if test.failed.constructor == String || test.failed.name == "AssertionError"
-        line = indent + "#{test.name} - #{test.failed}".red
+        line = indent + "#{test.name} ( #{test.failed} )".red
       else
-        line = indent + "#{test.name} - #{test.failed}".yellow
+        line = indent + "#{test.name} ( #{test.failed} )".yellow
       console.log(line)
     console.log()
 
@@ -73,46 +119,4 @@ class Context
     array.push(@)
     for context in @children
       context.collect(array)
-
-  test: (description, fn) ->
-    context = new Context(description, @)
-    @children.push(context)
-    if fn.length == 0
-      context.sync(fn)
-    else
-      context.async(fn)
-
-  sync: (fn) ->
-    try
-      fn()
-    catch error
-      @fail(error)
-
-  async: (fn) ->
-    Testify.count++
-    @emitter.once "done", ->
-      Testify.count--
-
-    try
-      fn(@)
-    catch error
-      @fail(error)
-      @done()
-
-  fail: (error) ->
-    @failed = error
-    if @parent
-      @parent.fail(true)
-    @done()
-
-  done: () ->
-    @finished = true
-    flag = @children.every (child) -> child.finished
-    if flag
-      @emitter.emit("done")
-    else
-      console.log @children
-
-  pass: ->
-    @done()
 
