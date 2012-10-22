@@ -1,8 +1,11 @@
 {
   "name": "testify",
   "version": "0.1.0",
-  "description": "near trivial testing, sync and async",
+  "description": "simple asynchronous testing using assertions of your choice",
   "main": "testify.coffee",
+  "files": [
+    "testify.coffee"
+  ],
   "dependencies":{
     "colors": "0.6.x"
    },
