@@ -1,53 +1,57 @@
+assert = require "assert"
 colors = require "colors"
 EventEmitter = require("events").EventEmitter
 
 module.exports = Testify =
   test: (name, fn) ->
-    if fn
-      context = new Context(name)
-      Testify.count++
-      context.emitter.once "done", ->
-        Testify.count--
+    context = new Context(name)
+    context.emitter.once "done", ->
+      console.log "suite done"
+      process.nextTick ->
         context.report()
-        if Testify.count == 0
-          Testify.emitter.emit("done")
-      fn(context)
-    else
-      process.once "exit", ->
-        console.log "Unimplemented: #{name}".cyan
-  count: 0
+        Testify.emitter.emit("done")
+    fn(context)
   emitter: new EventEmitter()
+  count: 0
   once: (args...) ->
     Testify.emitter.once(args...)
 
 process.on "exit", ->
   if Testify.count != 0
-    console.log "Not all tests ran".yellow
+    console.log "#{Testify.count} async tests did not complete.".yellow
 
 class Context
   constructor: (@name, @parent) ->
+    @emitter = new EventEmitter
     if @parent
       @level = @parent.level + 1
     else
       @level = 0
-
     @failed = false
     @children = []
+    @assert = {}
+    @finished = false
+    for name, method of assert
+      @assert[name] = @wrap_assertion(name, method)
 
-    @emitter = new EventEmitter
+  wrap_assertion: (name, fn) ->
+    (args...) =>
+      try
+        fn(args...)
+      catch error
+        @fail(error)
 
   report: ->
-    console.log()
-    top_level =
+    suite =
       name: "Passed: #{@name}"
       level: @level
       failed: @failed
-    if top_level.failed
-      top_level.name = "Failed: #{@name}"
-    result = [top_level]
+    if suite.failed
+      suite.name = "Failed: #{@name}"
+    result = [suite]
 
     for context in @children
-      context.collect_output(result)
+      context.collect(result)
 
     for test in result
       level = test.level
@@ -55,25 +59,20 @@ class Context
       indent = indent + "    " while level--
 
       if test.failed == false
-        console.log indent + test.name.green
+        line = indent + test.name.green
       else if test.failed == true
-        console.log indent + "#{test.name} - subtest/s failed".red
-      else if test.failed.name == "AssertionError"
-        console.log indent + "#{test.name} - #{test.failed}".red
+        line = indent + "#{test.name} - subtest failures".red
+      else if test.failed.constructor == String || test.failed.name == "AssertionError"
+        line = indent + "#{test.name} - #{test.failed}".red
       else
-        console.log indent + "#{test.name} - #{test.failed}".yellow
+        line = indent + "#{test.name} - #{test.failed}".yellow
+      console.log(line)
+    console.log()
 
-
-
-  collect_output: (array=[]) ->
-    array.push
-      level: @level
-      name: @name
-      failed: @failed
+  collect: (array=[]) ->
+    array.push(@)
     for context in @children
-      context.collect_output(array)
-
-
+      context.collect(array)
 
   test: (description, fn) ->
     context = new Context(description, @)
@@ -91,8 +90,9 @@ class Context
 
   async: (fn) ->
     Testify.count++
-    @emitter.once "done", =>
+    @emitter.once "done", ->
       Testify.count--
+
     try
       fn(@)
     catch error
@@ -103,33 +103,16 @@ class Context
     @failed = error
     if @parent
       @parent.fail(true)
+    @done()
 
   done: () ->
-    @emitter.emit("done")
+    @finished = true
+    flag = @children.every (child) -> child.finished
+    if flag
+      @emitter.emit("done")
+    else
+      console.log @children
 
-  success: (description) ->
-    console.log description.green
-
-  assert: require("assert")
-
-  pass: (description) ->
-    @emitter.once "done", => @success("  * " + description)
-
-  #fail: (description, error) ->
-    #if !error
-      #console.log "Failed: #{@name}\n  => #{description}".red.bold
-    #else
-      #if error.constructor == String || error.name == "AssertionError"
-        #console.log "Failed: #{@name}\n  * #{description} => #{error}".red.bold
-      #else
-        #console.log colors.yellow("Error: '#{description}' => #{error}")
-      # split,slice to remove the error message from the stack trace
-      #if error.stack
-        #console.log colors.white(error.stack.split("\n").slice(1).join("\n"))
-
-  #fail: (error) ->
-    #if error.constructor == String || error.name == "AssertionError"
-      #console.log "Failed: #{@name}\n => #{error}".red.bold
-    #else
-      #console.log colors.yellow("Error: '#{description}' => #{error}")
+  pass: ->
+    @done()
 
