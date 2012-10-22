@@ -5,76 +5,58 @@ EventEmitter = require("events").EventEmitter
 module.exports = Testify =
   test: (name, fn) ->
     suite = new Context(name)
-    fn(suite)
+    Testify.count++
+    suite.run(fn)
+    suite.emitter.once "done", ->
+      Testify.count--
+      if Testify.count == 0
+        Testify.emitter.emit "done"
+
   emitter: new EventEmitter()
   count: 0
   once: (args...) ->
     Testify.emitter.once(args...)
 
-process.on "exit", ->
-  if Testify.count != 0
-    console.log "#{Testify.count} async tests did not complete.".yellow
-
 class Context
   constructor: (@name, @parent) ->
     @emitter = new EventEmitter
+    @children = []
+    @finished = false
+    @failed = false
+
     if @parent
       @level = @parent.level + 1
     else
       @level = 0
+      # Top level contexts are responsible for reporting.
+      process.on "exit", => @report()
 
-    @finished = false
-    @failed = false
-
-    @children = []
-
-    @assert = {}
-    for name, method of assert
-      @assert[name] = @wrap_assertion(name, method)
-
-    if !@parent
-      @emitter.once "done", =>
-        process.nextTick =>
-          console.log()
-          @report()
-
-  wrap_assertion: (name, fn) ->
-    (args...) =>
-      try fn(args...) catch error
-        @fail(error)
 
   test: (description, fn) ->
     context = new Context(description, @)
     @children.push(context)
-    context.emitter.once "done", =>
-      @done()
+    context.emitter.once "done", => @done()
+    context.run(fn)
 
-    if fn.length == 0
-      context.sync(fn)
-      context.pass()
-    else
-      context.async(fn)
 
-  sync: (fn) ->
-    try fn() catch error
-      @fail(error)
-
-  async: (fn) ->
-    Testify.count++
-    @emitter.once "done", ->
-      Testify.count--
-
+  run: (fn) ->
     try
       fn(@)
+      # A function which takes no args is a synchronous test.
+      @pass() if fn.length == 0
     catch error
       @fail(error)
+
 
   pass: ->
     process.stdout.write ".".green
     @done()
 
   fail: (error) ->
-    process.stdout.write "F".red
+    if error.name == "AssertionError" || error.constructor == String
+      process.stdout.write "F".red
+    else
+      process.stdout.write "E".yellow
     @done()
     @propagate_failure(error)
 
@@ -83,17 +65,19 @@ class Context
     @parent?.propagate_failure("subtest failures")
 
   done: () ->
-    @finished = true
     flag = @children.every (child) ->
       child.finished || child.failed
-    if flag
+    if flag && !@finished
+      @finished = true
       @emitter.emit("done")
 
   report: ->
+    console.log()
     suite =
       name: "Passed: #{@name}"
       level: @level
       failed: @failed
+      finished: @finished
     if suite.failed
       suite.name = "Failed: #{@name}"
     result = [suite]
@@ -106,7 +90,9 @@ class Context
       indent = ""
       indent = indent + "    " while level--
 
-      if test.failed == false
+      if !test.finished
+        line = "Did not finish: #{test.name}".magenta
+      else if test.failed == false
         line = indent + test.name.green
       else if test.failed.constructor == String || test.failed.name == "AssertionError"
         line = indent + "#{test.name} ( #{test.failed} )".red
