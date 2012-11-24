@@ -3,50 +3,80 @@ colors = require "colors"
 EventEmitter = require("events").EventEmitter
 
 module.exports = Testify =
+  count: 0
+  emitter: new EventEmitter()
+
+  once: (args...) ->
+    Testify.emitter.once(args...)
+
   test: (name, fn) ->
-    suite = new Context(name)
+    suite = new TestContext(name, fn)
     Testify.count++
-    suite.run(fn)
     suite.emitter.once "done", ->
       Testify.count--
       if Testify.count == 0
         Testify.emitter.emit "done"
+    suite.run()
 
-  emitter: new EventEmitter()
-  count: 0
-  once: (args...) ->
-    Testify.emitter.once(args...)
-
-class Context
-  constructor: (@name, @parent) ->
+Testify.Turtle = class Turtle
+  constructor: (@name, @work, @parent) ->
     @emitter = new EventEmitter
     @children = []
     @finished = false
-    @failed = false
 
     if @parent
       @level = @parent.level + 1
     else
       @level = 0
-      # Top level contexts are responsible for reporting.
-      process.on "exit", => @report()
+
+  child: (description, work) ->
+    child = new @constructor(description, work, @)
+    @children.push(child)
+    child.emitter.once "done", (args...) => @done(args...)
+    child._run(work)
+
+  _run: (args...) ->
+    @work(@)
+    # A function which takes no args represents synchronous work.
+    if @work.length == 0
+      @sync(args...)
+    else
+      @async(args...)
+
+  async: (args...) ->
+
+  sync: (args...) ->
+    @done(args...)
+
+  done: (args...) ->
+    all = @children.every (child) -> child.finished
+    if all && !@finished
+      @finished = true
+      @emitter.emit("done", args...)
 
 
-  test: (description, fn) ->
-    context = new Context(description, @)
-    @children.push(context)
-    context.emitter.once "done", => @done()
-    context.run(fn)
+class TestContext extends Turtle
+  constructor: (args...) ->
+    super(args...)
+    @failed = false
 
+  test: (description, work) ->
+    @child(description, work)
 
-  run: (fn) ->
+  run: ->
+    process.on "exit", => @report()
+    @_run()
+
+  _run: ->
     try
-      fn(@)
-      # A function which takes no args is a synchronous test.
-      @pass() if fn.length == 0
+      super()
     catch error
       @fail(error)
 
+  sync: (args...) ->
+    @pass()
+
+  async: (args...) ->
 
   pass: ->
     process.stdout.write ".".green
@@ -57,19 +87,13 @@ class Context
       process.stdout.write "F".red
     else
       process.stdout.write "E".yellow
-    @done()
     @propagate_failure(error)
+    @done()
 
   propagate_failure: (error) ->
+    # TODO: can this be eventified?
     @failed = error
     @parent?.propagate_failure("subtest failures")
-
-  done: () ->
-    flag = @children.every (child) ->
-      child.finished || child.failed
-    if flag && !@finished
-      @finished = true
-      @emitter.emit("done")
 
   report: ->
     console.log()
