@@ -19,7 +19,9 @@ module.exports = Testify =
     suite.run()
 
 Testify.Turtle = class Turtle
+  idcounter = 0
   constructor: (@name, @work, @parent) ->
+    @id = idcounter++
     @emitter = new EventEmitter
     @children = []
     @finished = false
@@ -32,7 +34,13 @@ Testify.Turtle = class Turtle
   child: (description, work) ->
     child = new @constructor(description, work, @)
     @children.push(child)
-    child.emitter.once "done", (args...) => @done(args...)
+    child.emitter.on "sync", (args...) =>
+      console.log "#{@name}:", "sync event:", child.name
+      @async(args...)
+    child.emitter.on "async", (args...) =>
+      console.log "#{@name}:", "async event:", child.name
+      @emitter.emit "done"
+      #@done(args...)
     child._run(work)
 
   _run: (args...) ->
@@ -43,17 +51,24 @@ Testify.Turtle = class Turtle
     else
       @async(args...)
 
+
+  #done: (args...) ->
+    #all = @children.every (child) -> child.finished
+    #if all && !@finished
+      #@finished = true
+      #@emitter.emit("done", args...)
+
   async: (args...) ->
+    all = @children.every (child) -> child.finished
+    if all
+      @finished = true
+      @emitter.emit "async", args...
+    else
+      setTimeout (=> @async(args...)), 1000
 
   sync: (args...) ->
-    @done(args...)
-
-  done: (args...) ->
-    all = @children.every (child) -> child.finished
-    if all && !@finished
-      @finished = true
-      @emitter.emit("done", args...)
-
+    @finished = true
+    @emitter.emit "sync", args...
 
 class TestContext extends Turtle
   constructor: (args...) ->
@@ -64,7 +79,9 @@ class TestContext extends Turtle
     @child(description, work)
 
   run: ->
-    process.on "exit", => @report()
+    #process.on "exit", => @report()
+    @emitter.on "done", =>
+      @report()
     @_run()
 
   _run: ->
@@ -76,11 +93,10 @@ class TestContext extends Turtle
   sync: (args...) ->
     @pass()
 
-  async: (args...) ->
-
   pass: ->
-    process.stdout.write ".".green
-    @done()
+    #process.stdout.write ".".green
+    @finished = true
+    @emitter.emit "sync"
 
   fail: (error) ->
     if error.name == "AssertionError" || error.constructor == String
@@ -88,7 +104,8 @@ class TestContext extends Turtle
     else
       process.stdout.write "E".yellow
     @propagate_failure(error)
-    @done()
+    @emitter.emit "sync"
+    #@done()
 
   propagate_failure: (error) ->
     # TODO: can this be eventified?
