@@ -12,63 +12,136 @@ module.exports = Testify =
   test: (name, fn) ->
     suite = new TestContext(name, fn)
     Testify.count++
-    suite.emitter.once "done", ->
+    suite.emitter.once "COMPLETE", ->
       Testify.count--
       if Testify.count == 0
         Testify.emitter.emit "done"
     suite.run()
 
 Testify.Turtle = class Turtle
-  idcounter = 0
   constructor: (@name, @work, @parent) ->
-    @id = idcounter++
-    @emitter = new EventEmitter
-    @children = []
-    @finished = false
+    # A function which takes no args represents synchronous work.
+    if @work.length == 0
+      @type = "sync"
+    else
+      @type = "async"
 
     if @parent
       @level = @parent.level + 1
     else
       @level = 0
 
+    @emitter = new EventEmitter()
+    @children = []
+    @state = "REST"
+
+    @table =
+      REST:
+        sync_child: (args...) =>
+          @add_sync(args...)
+          "SYNC"
+        async_child: (args...) =>
+          @add_async(args...)
+          "ASYNC"
+        end: =>
+          if @type == "sync"
+            @complete()
+            "COMPLETE"
+          else
+            "NO_CHILDREN"
+      SYNC:
+        sync_child: (args...) =>
+          @add_sync(args...)
+          "SYNC"
+        async_child: (args...) =>
+          @add_async(args...)
+          "ASYNC"
+        async_done: (args...) =>
+          @complete()
+          "COMPLETE"
+        end: =>
+          @complete()
+          "COMPLETE"
+      ASYNC:
+        sync_child: (args...) =>
+          @add_sync(args...)
+          "ASYNC"
+        async_child: (args...) =>
+          @add_async(args...)
+          "ASYNC"
+        end: =>
+          "ASYNC"
+        async_done: (args...) =>
+          if @is_done()
+            @complete()
+            "COMPLETE"
+          else
+            "ASYNC"
+        timeout: =>
+          "COMPLETE"
+      NO_CHILDREN:
+        sync_child: (args...) =>
+          @add_sync(args...)
+          "SYNC"
+        async_child: (args...) =>
+          @add_async(args...)
+          "ASYNC"
+        async_done: (args...) =>
+          @complete()
+          "COMPLETE"
+        end: =>
+          @complete()
+          "COMPLETE"
+        timeout: =>
+          @complete()
+          "COMPLETE"
+      COMPLETE:
+        async_done: (args...) =>
+          "COMPLETE"
+
+  is_done: ->
+    flag = @children.every (child) -> child.state == "COMPLETE"
+
+  complete: ->
+    process.nextTick =>
+      @parent?.event "async_done", @
+
+  add_sync: (child) ->
+    @children.push(child)
+
+  add_async: (child) ->
+    @children.push(child)
+
+  event: (name, args...) ->
+    current_state = @state
+    transition = @table[@state][name]
+    if !transition
+      throw new Error("State '#{@state}' has no transition for event '#{name}'")
+    else
+      @state = transition(args...)
+    if @state != current_state
+      @emitter.emit @state
+
+
   child: (description, work) ->
     child = new @constructor(description, work, @)
-    @children.push(child)
-    child.emitter.on "sync", (args...) =>
-      console.log "#{@name}:", "sync event:", child.name
-      @async(args...)
-    child.emitter.on "async", (args...) =>
-      console.log "#{@name}:", "async event:", child.name
-      @emitter.emit "done"
-      #@done(args...)
-    child._run(work)
+    if child.type == "sync"
+      @event "sync_child", child
+    else if child.type == "async"
+      @event "async_child", child
+    else
+      throw new Error("bad type: #{child.type}")
+    child._run()
+
 
   _run: (args...) ->
     @work(@)
-    # A function which takes no args represents synchronous work.
-    if @work.length == 0
-      @sync(args...)
-    else
-      @async(args...)
+    @event "end"
+
+  done: ->
+    @event "async_done"
 
 
-  #done: (args...) ->
-    #all = @children.every (child) -> child.finished
-    #if all && !@finished
-      #@finished = true
-      #@emitter.emit("done", args...)
-
-  async: (args...) ->
-    all = @children.every (child) -> child.finished
-    if all
-      @finished = true
-      @emitter.emit "async", args...
-    else
-      setTimeout (=> @async(args...)), 1000
-
-  sync: (args...) ->
-    @finished = true
-    @emitter.emit "sync", args...
 
 class TestContext extends Turtle
   constructor: (args...) ->
@@ -79,36 +152,30 @@ class TestContext extends Turtle
     @child(description, work)
 
   run: ->
-    #process.on "exit", => @report()
-    @emitter.on "done", =>
-      @report()
+    @emitter.on "COMPLETE", => @report()
     @_run()
 
   _run: ->
     try
       super()
+      if @type == "sync"
+        process.stdout.write ".".green
     catch error
       @fail(error)
 
-  sync: (args...) ->
-    @pass()
-
   pass: ->
-    #process.stdout.write ".".green
-    @finished = true
-    @emitter.emit "sync"
+    process.stdout.write ".".green
+    @done()
 
   fail: (error) ->
     if error.name == "AssertionError" || error.constructor == String
       process.stdout.write "F".red
     else
       process.stdout.write "E".yellow
+    @event("end")
     @propagate_failure(error)
-    @emitter.emit "sync"
-    #@done()
 
   propagate_failure: (error) ->
-    # TODO: can this be eventified?
     @failed = error
     @parent?.propagate_failure("subtest failures")
 
@@ -118,7 +185,8 @@ class TestContext extends Turtle
       name: "Passed: #{@name}"
       level: @level
       failed: @failed
-      finished: @finished
+      state: @state
+
     if suite.failed
       suite.name = "Failed: #{@name}"
     result = [suite]
@@ -131,7 +199,7 @@ class TestContext extends Turtle
       indent = ""
       indent = indent + "    " while level--
 
-      if !test.finished
+      if test.state != "COMPLETE"
         line = "Did not finish: #{test.name}".magenta
       else if test.failed == false
         line = indent + test.name.green
@@ -139,6 +207,7 @@ class TestContext extends Turtle
         line = indent + "#{test.name} ( #{test.failed} )".red
       else
         line = indent + "#{test.name} ( #{test.failed} )".yellow
+        console.log test.failed.stack
       console.log(line)
     console.log()
 

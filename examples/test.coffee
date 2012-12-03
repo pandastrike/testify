@@ -1,60 +1,78 @@
-Testify = require "./testify"
+Testify = require "../testify"
 assert = require "assert"
 
-Testify.test "gnome", (suite) ->
-  assert.ok(true)
+saneTimeout = (ms, fn) -> setTimeout(fn, ms)
 
-  suite.test "gnome sync", ->
+Testify.test "allpass", (context0) ->
+
+  context0.test "allpass sync 1", ->
     assert.ok(true)
 
-  suite.test "gnome async", (context) ->
+  context0.test "allpass async", (context1) ->
     process.nextTick ->
-      assert.ok(true)
-      context.pass()
+      context1.pass()
 
-  suite.test "gnome nested async", (context) ->
-    assert.ok(true)
-    process.nextTick ->
-      context.test "gnome inner async", (context) ->
+  context0.test "allpass async.mixed", (context1) ->
+    saneTimeout 300, ->
 
-        context.test "gnome inner async sync", ->
-          assert.ok(true)
+      context1.test "allpass async.mixed sync", ->
+        assert.ok(true)
 
-        context.test "gnome inner async async", (context) ->
-          assert.ok(true)
-          context.pass()
+      context1.test "allpass async.mixed async", (context2) ->
+        saneTimeout 300, ->
+          context2.pass()
 
+  context0.test "allpass async.sync", (context1) ->
+    saneTimeout 300, ->
 
-Testify.test "smurf", (c1) ->
-  c1.test "smurf sync", ->
-    assert.ok(true)
+      context1.test "allpass async.sync 1", ->
+        assert.ok(true)
 
-  c1.test "smurf sync fail", ->
-    assert.ok(false)
+      context1.test "allpass async sync 2", ->
+        assert.ok(true)
 
-  c1.test "smurf async", (c2) ->
-    assert.ok(true)
-    c2.pass()
-
-  c1.test "smurf async fail", (c3) ->
-    assert.ok(false)
-    c3.pass()
-
-  c1.test "smurf nested async", (c4) ->
-    assert.ok(true)
-
-    c4.test "smurf async inner", (c5) ->
-      assert.ok(true)
-      c5.pass()
-    c4.pass()
+  context0.test "allpass async.async", (context1) ->
+    saneTimeout 300, ->
+      context1.test "allpass async.async async", (context2) ->
+        saneTimeout 300, ->
+          context2.pass()
 
 
-    c4.test "smurf async inner failure", (c6) ->
-      assert.ok(false)
-      c6.pass()
-    c4.pass()
-  c1.test "smurf error", ->
-    throw new Error("hi there")
+#Testify.test "allfail", (context0) ->
 
+  #context0.test "allfail sync fail", ->
+    #assert.ok(false)
+
+  #context0.test "allfail async", (context1) ->
+    #process.nextTick ->
+      #context1.fail("Intentional failure")
+
+  #context0.test "allfail async.mixed", (context1) ->
+    #saneTimeout 300, ->
+
+      #context1.test "allfail async.mixed sync", ->
+        #assert.ok(false)
+
+      #context1.test "allfail async.mixed async", (context2) ->
+        #saneTimeout 300, ->
+          #context2.fail("Intentional failure")
+
+      #context1.test "allfail async.mixed error", ->
+        #throw new Error("hello!")
+
+  #context0.test "allfail async.sync", (context1) ->
+    #saneTimeout 300, ->
+
+      #context1.test "allfail async.sync 1", ->
+        #assert.ok(false)
+
+      #context1.test "allfail async sync 2", ->
+        #assert.ok(false)
+
+  #context0.test "allfail async.async", (context1) ->
+    #saneTimeout 300, ->
+      #context1.test "allfail async.async async", (context2) ->
+        #saneTimeout 300, ->
+          #context2.fail("Intentional Failure")
 
 
