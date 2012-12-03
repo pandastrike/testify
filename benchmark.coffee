@@ -11,10 +11,12 @@ module.exports =
 class Benchmark extends Testify.Turtle
 
   constructor: (args...) ->
+    @results = {}
     super(args...)
 
   measure: (name, work) ->
     @child(name, work)
+
 
   run: (options, callback) ->
     {iterations} = options
@@ -22,63 +24,68 @@ class Benchmark extends Testify.Turtle
     results = {}
 
     suite_start = microtime.now()
-    @emitter.once "all_done", (results) =>
+    @emitter.on "all_done", (results) =>
       finish_time = microtime.now()
       out =
         runtime: finish_time - suite_start
-        data: {}
+        data: data = {}
       for name, values of results
         data[name] = new Dataset(values)
-      callback(out)
+      if callback
+        callback(out)
 
     iterate = =>
-      if ++count < iterations
-        @_run(results)
+      if ++count <= iterations
+        console.log count
+        @_run()
       else
-        @emitter.emit "all_done"
+        @emitter.emit "all_done", @results
 
-    @emitter.on "done", iterate
+    @emitter.on "COMPLETE", =>
+      @event "reset"
+      iterate()
     iterate()
 
   turtle_run: (args...) ->
     @work(@)
-    if @work.length == 0
-      @sync(args...)
+    @event "end"
+
+  _run: ->
+    @record_start(@name, -microtime.now())
+    @emitter.once "COMPLETE", =>
+      finish_time = microtime.now()
+      @record_end(@name, finish_time)
+    super()
+
+  record_start: (name, value) ->
+    if @parent
+      @parent.record_start(name, value)
     else
-      @async(args...)
+      console.log "start:", name, value
+      array = (@results[name] ||= [])
+      array.push(value)
 
-  _run: (results) ->
-    array = (results[@name] ||= [])
-    array.push(-microtime.now())
-    super(results)
-
-    #@work(@)
-    #if @work.length == 0
-      #@sync(args...)
-    #else
-      #@async(args...)
-
-    #else
-      #x = 0
-      #for child in @children
-        #child.once "done", =>
-          #if ++x = @children.length
-            #@done(results)
-        #child.one_run(results)
+  record_end: (name, value) ->
+    if @parent
+      @parent.record_end(name, value)
+    else
+      console.log "finish:", name, value
+      array = (@results[name] ||= [])
+      index = array.length - 1
+      array[index] = array[index] + value
 
 
   finish: ->
-    finish_time = microtime.now()
-    # do something with time
-    #@done()
+    #finish_time = microtime.now()
+    #@record_end(@name, finish_time)
+    @event "async_done"
 
-  done: (results) ->
-    finish_time = microtime.now()
-    times = results[@name]
-    index = times.length - 1
-    # the start time was added as a negative timestamp
-    times[index] = times[index] + finish_time
-    @emitter.emit "done", results
+  #done: (results) ->
+    #finish_time = microtime.now()
+    #times = results[@name]
+    #index = times.length - 1
+    ## the start time was added as a negative timestamp
+    #times[index] = times[index] + finish_time
 
 
 class Dataset
