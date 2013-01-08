@@ -83,7 +83,16 @@ class TestContext extends Turtle
     @done()
 
   fail: (error) ->
-    if error.name == "AssertionError" || error.constructor == String
+    if error.constructor == String
+      process.stdout.write "F".red
+      # create fake error
+      throwaway = new Error(error)
+      message = error.toString()
+      error =
+        name: "AssertionError"
+        stack: throwaway.stack.split("\n").slice(1).join("\n")
+        toString: -> message
+    else if error.name == "AssertionError"
       process.stdout.write "F".red
     else
       process.stdout.write "E".yellow
@@ -119,9 +128,9 @@ class TestContext extends Turtle
       else if test.failed == false
         line = indent + test.name.green
       else if test.failed.constructor == String || test.failed.name == "AssertionError"
-        line = indent + "#{test.name} ( #{test.failed} )".red
+        line = indent + "#{test.name} ( #{test.failed.toString()} )".red
       else
-        line = indent + "#{test.name} ( #{test.failed} )".yellow
+        line = indent + "#{test.name} ( #{test.failed.toString()} )".yellow
       console.log(line)
       if test.failed?.stack
         where = test.failed.stack.split("\n")[1]
