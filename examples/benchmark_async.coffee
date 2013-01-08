@@ -7,17 +7,17 @@ async_benchmark = Testify.benchmark "asynchronousness", (bm) ->
 
   bm.measure "composite", (outer) ->
     saneTimeout 5, ->
-      outer.measure "sync", ->
+      outer.measure "composite sync", ->
         a = []
         for i in [1..1000]
           a.push i
-      outer.measure "inner", (inner) ->
-        process.nextTick = -> inner.finish()
 
-async_benchmark.run
-  iterations: 10,
- (results) ->
-    console.log results.summarize()
+      outer.measure "composite inner", (inner) ->
+        saneTimeout 10, ->
+          inner.finish()
+
+async_benchmark.run {iterations: 3}, (results) ->
+  console.log JSON.stringify(results, null, 2)
 
 
 results_example =
