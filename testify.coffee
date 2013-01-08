@@ -124,6 +124,8 @@ class TestContext extends Turtle
         line = indent + "#{test.name} ( #{test.failed} )".yellow
       console.log(line)
     console.log()
+    if suite.failed
+      process.exit(1)
 
   collect: (array=[]) ->
     array.push(@)
