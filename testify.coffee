@@ -258,6 +258,8 @@ class TestContext extends Context
           console.log "#{indent}    #{where.slice(7)}"
 
     console.log()
+    if suite.failed
+      process.exit(1)
 
   collect: (array=[]) ->
     array.push(@)
