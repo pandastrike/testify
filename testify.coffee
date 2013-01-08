@@ -123,6 +123,12 @@ class TestContext extends Turtle
       else
         line = indent + "#{test.name} ( #{test.failed} )".yellow
       console.log(line)
+      if test.failed?.stack
+        where = test.failed.stack.split("\n")[1]
+        regex = /\((.*)\)/
+        match = regex.exec(where)
+        console.log "#{indent}    #{match[1]}"
+
     console.log()
     if suite.failed
       process.exit(1)
