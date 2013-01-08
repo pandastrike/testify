@@ -1,4 +1,4 @@
-Testify = require "./testify"
+Testify = require "../testify"
 assert = require "assert"
 
 Testify.test "gnome", (suite) ->
