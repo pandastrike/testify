@@ -18,7 +18,9 @@ module.exports = Testify =
         Testify.emitter.emit "done"
     suite.run()
 
-Testify.Turtle = class Turtle
+# A base class for creating nested contexts. I extracted this to try and
+# use it for benchmarking, but haven't gotten the benchmarker baked yet.
+Testify.Context = class Context
   constructor: (@name, @work, @parent) ->
     @emitter = new EventEmitter
     @children = []
@@ -55,7 +57,7 @@ Testify.Turtle = class Turtle
       @emitter.emit("done", args...)
 
 
-class TestContext extends Turtle
+class TestContext extends Context
   constructor: (args...) ->
     super(args...)
     @failed = false
