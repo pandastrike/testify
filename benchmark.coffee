@@ -8,7 +8,7 @@ module.exports =
   benchmark: (name, fn) ->
     new Benchmark(name, fn)
 
-class Benchmark extends Testify.Turtle
+class Benchmark extends Testify.Context
 
   constructor: (args...) ->
     @results = {}

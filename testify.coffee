@@ -18,9 +18,12 @@ module.exports = Testify =
         Testify.emitter.emit "done"
     suite.run()
 
-Testify.Turtle = class Turtle
+Testify.Context = class Context
   constructor: (@name, @work, @parent) ->
-    # A function which takes no args represents synchronous work.
+    # Arity of a function can be determined using the `length` property
+    # For the purposes of this library, a `work` function which takes no args
+    # represents synchronous work. When the supplied function takes an argument,
+    # it will be treated as asynchronous and passed this context as that argument.
     if @work.length == 0
       @type = "sync"
     else
@@ -35,6 +38,26 @@ Testify.Turtle = class Turtle
     @children = []
     @state = "REST"
 
+    # Finite State Machine
+    #
+    # States:
+    #
+    # REST: starting state
+    # SYNC: context has only synchronous children
+    # ASYNC: context has at least one asynchronous child
+    # NO_CHILDREN: context finished the work/setup function before any children were defined.
+    #   The expectation is that children will be added in an asynchronous callback.
+    # COMPLETE: all synchronous and asynchronous children have finished their work.
+    #
+    # Events:
+    #
+    # sync_child: signals the creation of a synchronous child context
+    # async_child: signals creation of an asynchronous child
+    # child_done: one of the descendants of a context has finished
+    # end: the context reached the end of its work function
+    # timeout: I don't remember the exact intent, and it's not presently used.
+    #
+    # The return value of each event function is used to select the next state.
     @table =
       REST:
         sync_child: (args...) =>
@@ -56,7 +79,7 @@ Testify.Turtle = class Turtle
         async_child: (args...) =>
           @add_async(args...)
           "ASYNC"
-        async_done: (args...) =>
+        child_done: (args...) =>
           @complete()
           "COMPLETE"
         end: =>
@@ -71,7 +94,7 @@ Testify.Turtle = class Turtle
           "ASYNC"
         end: =>
           "ASYNC"
-        async_done: (args...) =>
+        child_done: (args...) =>
           if @is_done()
             @complete()
             "COMPLETE"
@@ -86,7 +109,7 @@ Testify.Turtle = class Turtle
         async_child: (args...) =>
           @add_async(args...)
           "ASYNC"
-        async_done: (args...) =>
+        child_done: (args...) =>
           @complete()
           "COMPLETE"
         end: =>
@@ -96,31 +119,38 @@ Testify.Turtle = class Turtle
           @complete()
           "COMPLETE"
       COMPLETE:
-        async_done: (args...) =>
+        sync_child: (args...) =>
+          throw new Error "Testify Context '#{@name}' created a synchronous child after it had completed"
+          "COMPLETE"
+        child_done: (args...) =>
           "COMPLETE"
 
+  event: (name, args...) ->
+    current_state = @state
+    transition = @table[@state][name]
+    if !transition
+      throw new Error("Context(#{@name}) in State(#{@state}) has no transition for Event(#{name})")
+    else
+      @state = transition(args...)
+      #console.log "Context(#{@name}) in State(#{current_state}) got Event(#{name}) -> #{@state}"
+    if @state != current_state
+      @emitter.emit @state
+
   is_done: ->
-    flag = @children.every (child) -> child.state == "COMPLETE"
+    @children.every (child) -> child.state == "COMPLETE"
 
   complete: ->
+    # This seems problematic.  I apparently had to use next tick so that
+    # contexts don't go COMPLETE before any asynchronous functions have added
+    # new children.
     process.nextTick =>
-      @parent?.event "async_done", @
+      @parent?.event "child_done", @
 
   add_sync: (child) ->
     @children.push(child)
 
   add_async: (child) ->
     @children.push(child)
-
-  event: (name, args...) ->
-    current_state = @state
-    transition = @table[@state][name]
-    if !transition
-      throw new Error("State '#{@state}' has no transition for event '#{name}'")
-    else
-      @state = transition(args...)
-    if @state != current_state
-      @emitter.emit @state
 
 
   child: (description, work) ->
@@ -139,11 +169,12 @@ Testify.Turtle = class Turtle
     @event "end"
 
   done: ->
-    @event "async_done"
+    process.nextTick =>
+      @event "child_done"
 
 
 
-class TestContext extends Turtle
+class TestContext extends Context
   constructor: (args...) ->
     super(args...)
     @failed = false
