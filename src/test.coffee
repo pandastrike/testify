@@ -2,7 +2,15 @@ colors = require "colors"
 
 Context = require("./context")
 
+colorize = (color, string) ->
+  if TestContext.options.color
+    string[color]
+  else
+    string
+
 module.exports = class TestContext extends Context
+
+
   constructor: (args...) ->
     super(args...)
     @failed = false
@@ -14,7 +22,9 @@ module.exports = class TestContext extends Context
     @emitter.on "COMPLETE", => @report()
     process.on "exit", =>
       if @state != "COMPLETE"
-        console.log "Testify exited in an incomplete state!".bold.magenta
+        message = colorize("bold", "Testify exited in an incomplete state!")
+        message = colorize("magenta", message)
+        console.log message
         @report()
     @_run()
 
@@ -22,17 +32,17 @@ module.exports = class TestContext extends Context
     try
       super()
       if @type == "sync"
-        process.stdout.write ".".green
+        process.stdout.write(colorize("green", "."))
     catch error
       @fail(error)
 
   pass: ->
-    process.stdout.write ".".green
+    process.stdout.write(colorize("green", "."))
     @done()
 
   fail: (error) ->
     if error.constructor == String
-      process.stdout.write "F".red
+      process.stdout.write(colorize("red", "F"))
       # create fake error with munged stack trace
       throwaway = new Error(error)
       message = error.toString()
@@ -41,9 +51,9 @@ module.exports = class TestContext extends Context
         stack: throwaway.stack.split("\n").slice(1).join("\n")
         toString: -> message
     else if error.name == "AssertionError"
-      process.stdout.write "F".red
+      process.stdout.write(colorize("red", "F"))
     else
-      process.stdout.write "E".yellow
+      process.stdout.write(colorize("yellow", "E"))
     @event("end")
     @propagate_failure(error)
 
@@ -72,13 +82,13 @@ module.exports = class TestContext extends Context
       indent = indent + "    " while level--
 
       if test.state != "COMPLETE"
-        line = indent + "Did not finish: #{test.name}".magenta
+        line = colorize("magenta", indent + "Did not finish: #{test.name}")
       else if test.failed == false
-        line = indent + test.name.green
+        line = colorize("green", indent + test.name)
       else if test.failed.constructor == String || test.failed.name == "AssertionError"
-        line = indent + "#{test.name} ( #{test.failed.toString()} )".red
+        line = colorize("red", indent + "#{test.name} ( #{test.failed.toString()} )")
       else
-        line = indent + "#{test.name} ( #{test.failed.toString()} )".yellow
+        line = colorize("yellow", indent + "#{test.name} ( #{test.failed.toString()} )")
       console.log(line)
       if test.failed?.stack
         where = test.failed.stack.split("\n")[1]

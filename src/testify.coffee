@@ -11,8 +11,12 @@ module.exports = Testify =
 
   once: (args...) ->
     Testify.emitter.once(args...)
+  # set at runtime to modify behavior
+  options:
+    color: true
 
   test: (name, fn) ->
+    TestContext.options = Testify.options
     suite = new TestContext(name, fn)
     Testify.count++
     suite.emitter.once "COMPLETE", ->
