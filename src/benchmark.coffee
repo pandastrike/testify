@@ -1,15 +1,9 @@
-EventEmitter = require("events").EventEmitter
 microtime = require "microtime"
-require "./statistics"
-#Ascribe = require("ascribe/ascribe.coffee")
+require "../statistics"
 
-Testify = require "./testify"
+Context = require("./context")
 
-module.exports =
-  benchmark: (name, fn) ->
-    new Benchmark(name, fn)
-
-class Benchmark extends Testify.Context
+module.exports = class Benchmark extends Context
 
   constructor: (args...) ->
     @results = {}
@@ -89,8 +83,5 @@ class Dataset
 
   summarize: (args...) ->
     @data.summarize(args...)
-
-  #draw: (options={}) ->
-    #Ascribe.draw @data, options
 
 

@@ -1,4 +1,4 @@
-Testify = require "../testify"
+Testify = require "../src/testify"
 assert = require "assert"
 
 saneTimeout = (ms, fn) -> setTimeout(fn, ms)

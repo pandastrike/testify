@@ -1,4 +1,4 @@
-Testify = require("../benchmark")
+Testify = require("../src/testify")
 
 saneTimeout = (ms, fn) ->
   setTimeout(fn, ms)
