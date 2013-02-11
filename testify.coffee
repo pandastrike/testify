@@ -124,6 +124,8 @@ Testify.Context = class Context
           "COMPLETE"
         child_done: (args...) =>
           "COMPLETE"
+        reset: (args...) =>
+          "REST"
 
   event: (name, args...) ->
     current_state = @state
@@ -132,7 +134,7 @@ Testify.Context = class Context
       throw new Error("Context(#{@name}) in State(#{@state}) has no transition for Event(#{name})")
     else
       @state = transition(args...)
-      #console.log "Context(#{@name}) in State(#{current_state}) got Event(#{name}) -> #{@state}"
+      #console.log "Context(#{@name}) in State(#{current_state}) got Event(#{name}) -> #{@state}".cyan
     if @state != current_state
       @emitter.emit @state
 
@@ -140,9 +142,6 @@ Testify.Context = class Context
     @children.every (child) -> child.state == "COMPLETE"
 
   complete: ->
-    # This seems problematic.  I apparently had to use next tick so that
-    # contexts don't go COMPLETE before any asynchronous functions have added
-    # new children.
     process.nextTick =>
       @parent?.event "child_done", @
 
@@ -184,6 +183,10 @@ class TestContext extends Context
 
   run: ->
     @emitter.on "COMPLETE", => @report()
+    process.on "exit", =>
+      if @state != "COMPLETE"
+        console.log "Testify exited in an incomplete state!".bold.magenta
+        @report()
     @_run()
 
   _run: ->
@@ -201,7 +204,7 @@ class TestContext extends Context
   fail: (error) ->
     if error.constructor == String
       process.stdout.write "F".red
-      # create fake error
+      # create fake error with munged stack trace
       throwaway = new Error(error)
       message = error.toString()
       error =
@@ -240,7 +243,7 @@ class TestContext extends Context
       indent = indent + "    " while level--
 
       if test.state != "COMPLETE"
-        line = "Did not finish: #{test.name}".magenta
+        line = indent + "Did not finish: #{test.name}".magenta
       else if test.failed == false
         line = indent + test.name.green
       else if test.failed.constructor == String || test.failed.name == "AssertionError"

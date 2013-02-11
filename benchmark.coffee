@@ -1,5 +1,6 @@
 EventEmitter = require("events").EventEmitter
 microtime = require "microtime"
+require "./statistics"
 #Ascribe = require("ascribe/ascribe.coffee")
 
 Testify = require "./testify"
@@ -17,7 +18,6 @@ class Benchmark extends Testify.Context
   measure: (name, work) ->
     @child(name, work)
 
-
   run: (options, callback) ->
     {iterations} = options
     count = 0
@@ -34,11 +34,16 @@ class Benchmark extends Testify.Context
       if callback
         callback(out)
 
+    process.stdout.write("Iteration: ")
     iterate = =>
       if ++count <= iterations
-        console.log count
+        if count % 5 == 0 || count == 1
+          process.stdout.write(count.toString())
+        else
+          process.stdout.write(".")
         @_run()
       else
+        process.stdout.write("\n")
         @emitter.emit "all_done", @results
 
     @emitter.on "COMPLETE", =>
@@ -46,9 +51,6 @@ class Benchmark extends Testify.Context
       iterate()
     iterate()
 
-  turtle_run: (args...) ->
-    @work(@)
-    @event "end"
 
   _run: ->
     @record_start(@name, -microtime.now())
@@ -61,31 +63,24 @@ class Benchmark extends Testify.Context
     if @parent
       @parent.record_start(name, value)
     else
-      console.log "start:", name, value
-      array = (@results[name] ||= [])
-      array.push(value)
+      if name != @name
+        #console.log "start:", name, value
+        array = (@results[name] ||= [])
+        array.push(value)
 
   record_end: (name, value) ->
     if @parent
       @parent.record_end(name, value)
     else
-      console.log "finish:", name, value
-      array = (@results[name] ||= [])
-      index = array.length - 1
-      array[index] = array[index] + value
-
+      if name != @name
+        #console.log "finish:", name, value
+        array = (@results[name] ||= [])
+        index = array.length - 1
+        array[index] = array[index] + value
 
   finish: ->
-    #finish_time = microtime.now()
-    #@record_end(@name, finish_time)
-    @event "async_done"
+    @event "child_done"
 
-  #done: (results) ->
-    #finish_time = microtime.now()
-    #times = results[@name]
-    #index = times.length - 1
-    ## the start time was added as a negative timestamp
-    #times[index] = times[index] + finish_time
 
 
 class Dataset
