@@ -4,6 +4,11 @@ Simple, asynchronous testing, using the assertions of your choice.
 
 Written in CoffeeScript; will start compiling to JS at some point soon.
 
+
+## Nested testing
+
+tbw
+
 ## Basic usage
 
 ```coffee

@@ -1,12 +1,13 @@
 {
   "name": "testify",
-  "version": "0.1.3",
+  "version": "0.2.0-beta",
   "description": "simple asynchronous testing using assertions of your choice",
   "main": "testify.coffee",
   "files": [
     "testify.coffee"
   ],
   "dependencies":{
+    "microtime": "0.3.3",
     "colors": "0.6.x"
    },
   "repository": "",
