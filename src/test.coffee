@@ -29,6 +29,9 @@ module.exports = class TestContext extends Context
     @_run()
 
   _run: ->
+    @emitter.on "COMPLETE", =>
+      clearTimeout(@timeout_id) if @timeout_id
+      @timeout_id = undefined
     try
       super()
       if @type == "sync"
@@ -56,6 +59,14 @@ module.exports = class TestContext extends Context
       process.stdout.write(colorize("yellow", "E"))
     @event("end")
     @propagate_failure(error)
+
+  timeout: (milliseconds, message) ->
+    fn = =>
+      @fail(message || "Timed out after #{milliseconds} milliseconds")
+    @timeout_id = setTimeout(fn, milliseconds)
+
+
+
 
   propagate_failure: (error) ->
     @failed = error
