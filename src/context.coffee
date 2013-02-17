@@ -39,7 +39,6 @@ module.exports = class Context
     # async_child: signals creation of an asynchronous child
     # child_done: one of the descendants of a context has finished
     # end: the context reached the end of its work function
-    # timeout: I don't remember the exact intent, and it's not presently used.
     #
     # The return value of each event function is used to select the next state.
     @table =
@@ -84,8 +83,6 @@ module.exports = class Context
             "COMPLETE"
           else
             "ASYNC"
-        timeout: =>
-          "COMPLETE"
       NO_CHILDREN:
         sync_child: (args...) =>
           @add_sync(args...)
@@ -97,9 +94,6 @@ module.exports = class Context
           @complete()
           "COMPLETE"
         end: =>
-          @complete()
-          "COMPLETE"
-        timeout: =>
           @complete()
           "COMPLETE"
       COMPLETE:
