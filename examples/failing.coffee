@@ -49,12 +49,12 @@ Testify.test "IntentionalFail", (context) ->
 
   context.test "Timing out intentionally", (context) ->
     context.test "forced timeout", (context) ->
-      context.timeout(3 * 1000)
-      saneTimeout 6 * 1000, ->
+      context.timeout(3 * 100)
+      saneTimeout 6 * 100, ->
         # All of the tests in this file are supposed to fail in some way.
         # Thus if we see green in the output, the failure failed.
         context.pass()
     context.test "cancelled timeout", (context) ->
-      saneTimeout 2 * 1000, ->
+      saneTimeout 2 * 100, ->
         context.fail("Intentional Failure")
 

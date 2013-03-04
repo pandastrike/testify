@@ -20,13 +20,13 @@ module.exports = class Context
 
     @emitter = new EventEmitter()
     @children = []
-    @state = "REST"
+    @state = "START"
 
     # Finite State Machine
     #
     # States:
     #
-    # REST: starting state
+    # START: starting state
     # SYNC: context has only synchronous children
     # ASYNC: context has at least one asynchronous child
     # NO_CHILDREN: context finished the work/setup function before any children were defined.
@@ -38,63 +38,56 @@ module.exports = class Context
     # sync_child: signals the creation of a synchronous child context
     # async_child: signals creation of an asynchronous child
     # child_done: one of the descendants of a context has finished
-    # end: the context reached the end of its work function
+    # end_of_block: the context reached the end of its work function
     #
     # The return value of each event function is used to select the next state.
     @table =
-      REST:
+      START:
         sync_child: (args...) =>
-          @add_sync(args...)
+          @register_child(args...)
           "SYNC"
         async_child: (args...) =>
-          @add_async(args...)
+          @register_child(args...)
           "ASYNC"
-        end: =>
-          if @type == "sync"
-            @complete()
-            "COMPLETE"
-          else
-            "NO_CHILDREN"
+        childless: =>
+          "NO_CHILDREN"
+        end_of_block: =>
+          @notify_parent()
+          "COMPLETE"
       SYNC:
         sync_child: (args...) =>
-          @add_sync(args...)
+          @register_child(args...)
           "SYNC"
         async_child: (args...) =>
-          @add_async(args...)
+          @register_child(args...)
           "ASYNC"
         child_done: (args...) =>
-          @complete()
+          @notify_parent()
           "COMPLETE"
-        end: =>
-          @complete()
+        end_of_block: =>
+          @notify_parent()
           "COMPLETE"
       ASYNC:
         sync_child: (args...) =>
-          @add_sync(args...)
+          @register_child(args...)
           "ASYNC"
         async_child: (args...) =>
-          @add_async(args...)
+          @register_child(args...)
           "ASYNC"
-        end: =>
+        end_of_block: =>
           "ASYNC"
         child_done: (args...) =>
-          if @is_done()
-            @complete()
-            "COMPLETE"
-          else
-            "ASYNC"
+          @notify_parent()
+          "COMPLETE"
       NO_CHILDREN:
         sync_child: (args...) =>
-          @add_sync(args...)
+          @register_child(args...)
           "SYNC"
         async_child: (args...) =>
-          @add_async(args...)
+          @register_child(args...)
           "ASYNC"
         child_done: (args...) =>
-          @complete()
-          "COMPLETE"
-        end: =>
-          @complete()
+          @notify_parent()
           "COMPLETE"
       COMPLETE:
         sync_child: (args...) =>
@@ -103,7 +96,7 @@ module.exports = class Context
         child_done: (args...) =>
           "COMPLETE"
         reset: (args...) =>
-          "REST"
+          "START"
 
   event: (name, args...) ->
     current_state = @state
@@ -112,23 +105,25 @@ module.exports = class Context
       throw new Error("Context(#{@name}) in State(#{@state}) has no transition for Event(#{name})")
     else
       @state = transition(args...)
-      #console.log "Context(#{@name}) in State(#{current_state}) got Event(#{name}) -> #{@state}".cyan
+      console.log "Context(#{@name}) in State(#{current_state}) got Event(#{name}) -> #{@state}".cyan
     if @state != current_state
       @emitter.emit @state
 
   is_done: ->
     @children.every (child) -> child.state == "COMPLETE"
 
-  complete: ->
+  notify_parent: ->
     process.nextTick =>
-      @parent?.event "child_done", @
+      if @parent?.is_done()
+        @parent?.event "child_done", @
 
-  add_sync: (child) ->
+  done: ->
+    process.nextTick =>
+      if @is_done()
+        @event "child_done"
+
+  register_child: (child) ->
     @children.push(child)
-
-  add_async: (child) ->
-    @children.push(child)
-
 
   child: (description, work) ->
     child = new @constructor(description, work, @)
@@ -143,10 +138,9 @@ module.exports = class Context
 
   _run: (args...) ->
     @work(@)
-    @event "end"
-
-  done: ->
-    process.nextTick =>
-      @event "child_done"
+    if @type == "sync" || @children.length > 0
+      @event "end_of_block"
+    else
+      @event "childless"
 
 

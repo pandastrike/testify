@@ -73,7 +73,8 @@ module.exports = class Benchmark extends Context
         array[index] = array[index] + value
 
   finish: ->
-    @event "child_done"
+    if @is_done()
+      @event "child_done"
 
 
 
