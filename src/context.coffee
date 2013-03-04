@@ -1,5 +1,6 @@
 
 EventEmitter = require("events").EventEmitter
+FSM = require "./fsm"
 
 module.exports = class Context
 
@@ -18,9 +19,7 @@ module.exports = class Context
     else
       @level = 0
 
-    @emitter = new EventEmitter()
     @children = []
-    @state = "START"
 
     # Finite State Machine
     #
@@ -41,79 +40,116 @@ module.exports = class Context
     # end_of_block: the context reached the end of its work function
     #
     # The return value of each event function is used to select the next state.
-    @table =
+    @fsm = new FSM()
+    @emitter = @fsm.emitter
+    @fsm.define
       START:
-        sync_child: (args...) =>
-          @register_child(args...)
-          "SYNC"
-        async_child: (args...) =>
-          @register_child(args...)
-          "ASYNC"
-        childless: =>
-          "CHILDLESS"
-        end_of_block: =>
-          @notify_parent()
-          "COMPLETE"
+        sync_child:
+          action: (args...) =>
+            @register_child(args...)
+          next: "SYNC"
+        async_child:
+          action: (args...) =>
+            @register_child(args...)
+          next: "ASYNC"
+
+        childless:
+          action: =>
+          next: "CHILDLESS"
+
+        end_of_block:
+         action:  =>
+            @notify_parent()
+          next: "COMPLETE"
       SYNC:
-        sync_child: (args...) =>
-          @register_child(args...)
-          "SYNC"
-        async_child: (args...) =>
-          @register_child(args...)
-          "ASYNC"
-        end_of_block: =>
-          @notify_parent()
-          "COMPLETE"
-        completion: (args...) =>
-          @notify_parent()
-          "COMPLETE"
+        sync_child:
+          action: (args...) =>
+            @register_child(args...)
+          next: "SYNC"
+
+        async_child:
+          action: (args...) =>
+            @register_child(args...)
+          next: "ASYNC"
+
+        end_of_block:
+         action:  =>
+            @notify_parent()
+          next: "COMPLETE"
+
+        completion:
+          action: =>
+            @notify_parent()
+          next: "COMPLETE"
+
       ASYNC:
-        sync_child: (args...) =>
-          @register_child(args...)
-          "ASYNC"
-        async_child: (args...) =>
-          @register_child(args...)
-          "ASYNC"
-        end_of_block: =>
-          "ASYNC"
-        completion: (args...) =>
-          @notify_parent()
-          "COMPLETE"
+        sync_child:
+          action: (args...) =>
+            @register_child(args...)
+          next: "ASYNC"
+
+        async_child:
+          action: (args...) =>
+            @register_child(args...)
+          next: "ASYNC"
+
+        end_of_block:
+          action: =>
+          next: "ASYNC"
+
+        completion:
+          action: =>
+            @notify_parent()
+          next: "COMPLETE"
+
       CHILDLESS:
-        sync_child: (args...) =>
-          @register_child(args...)
-          "SYNC"
-        async_child: (args...) =>
-          @register_child(args...)
-          "ASYNC"
-        completion: (args...) =>
-          @notify_parent()
-          "COMPLETE"
+        sync_child:
+          action: (args...) =>
+            @register_child(args...)
+          next: "SYNC"
+
+        async_child:
+          action: (args...) =>
+            @register_child(args...)
+          next: "ASYNC"
+
+        completion:
+          action: =>
+            @notify_parent()
+          next: "COMPLETE"
+
       COMPLETE:
-        sync_child: (args...) =>
-          # FIXME: probably shouldn't throw an error here, but I don't want to
-          # spend time figuring out the right way to fail here until I've got the
-          # transition table pinned down.
-          throw new Error("Context '#{@name}' created a synchronous child after it had completed")
-          "COMPLETE"
-        completion: (args...) =>
-          "COMPLETE"
-        reset: (args...) =>
-          "START"
+        sync_child:
+          action: =>
+            # FIXME: probably shouldn't throw an error here, but I don't want to
+            # spend time figuring out the right way to fail here until I've got the
+            # transition table pinned down.
+            throw new Error("Context '#{@name}' created a synchronous child after it had completed")
+          next: "COMPLETE"
+
+        completion:
+          action: (args...) =>
+          next: "COMPLETE"
+        reset:
+          action: =>
+          next: "START"
+
+  state: ->
+    @fsm.state
 
   event: (name, args...) ->
-    current_state = @state
-    transition = @table[@state][name]
-    if !transition
-      throw new Error("Context(#{@name}) in State(#{@state}) has no transition for Event(#{name})")
-    else
-      @state = transition(args...)
-      #console.log "Context(#{@name}) in State(#{current_state}) got Event(#{name}) -> #{@state}".cyan
-    if @state != current_state
-      @emitter.emit @state
+    current = @fsm.state
+    @fsm.event(name, args...)
+    #console.log()
+    #console.log
+      #name: @name
+      #from: current
+      #event: name
+      #to: @fsm.state
+
 
   is_done: ->
-    @children.every (child) -> child.state == "COMPLETE"
+    @children.every (child) -> child.state() == "COMPLETE"
 
   notify_parent: ->
     process.nextTick =>

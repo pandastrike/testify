@@ -74,7 +74,7 @@ module.exports = class Benchmark extends Context
 
   finish: ->
     if @is_done()
-      @event "child_done"
+      @event "completion"
 
 
 

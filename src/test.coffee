@@ -21,7 +21,7 @@ module.exports = class TestContext extends Context
   run: ->
     @emitter.on "COMPLETE", => @report()
     process.on "exit", =>
-      if @state != "COMPLETE"
+      if @state() != "COMPLETE"
         message = colorize("bold", "Testify exited in an incomplete state!")
         message = colorize("magenta", message)
         console.log message
@@ -69,19 +69,19 @@ module.exports = class TestContext extends Context
     @timeout_id = setTimeout(fn, milliseconds)
 
 
-
-
   propagate_failure: (error) ->
     @failed = error
     @parent?.propagate_failure("subtest failures")
 
   report: ->
     console.log()
+    # NOTE: I can't remember why I'm constructing a pseudo context here. It's
+    # possible the reason disappeared in the reworking around an FSM.
     suite =
       name: "Passed: #{@name}"
       level: @level
       failed: @failed
-      state: @state
+      state: => @state()
 
     if suite.failed
       suite.name = "Failed: #{@name}"
@@ -95,7 +95,7 @@ module.exports = class TestContext extends Context
       indent = ""
       indent = indent + "    " while level--
 
-      if test.state != "COMPLETE"
+      if test.state() != "COMPLETE"
         line = colorize("magenta", indent + "Did not finish: #{test.name}")
       else if test.failed == false
         line = colorize("green", indent + test.name)
