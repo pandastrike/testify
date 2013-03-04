@@ -29,7 +29,7 @@ module.exports = class Context
     # START: starting state
     # SYNC: context has only synchronous children
     # ASYNC: context has at least one asynchronous child
-    # NO_CHILDREN: context finished the work/setup function before any children were defined.
+    # CHILDLESS: context finished the work/setup function before any children were defined.
     #   The expectation is that children will be added in an asynchronous callback.
     # COMPLETE: all synchronous and asynchronous children have finished their work.
     #
@@ -37,7 +37,7 @@ module.exports = class Context
     #
     # sync_child: signals the creation of a synchronous child context
     # async_child: signals creation of an asynchronous child
-    # child_done: one of the descendants of a context has finished
+    # completion: one of the descendants of a context has finished
     # end_of_block: the context reached the end of its work function
     #
     # The return value of each event function is used to select the next state.
@@ -50,7 +50,7 @@ module.exports = class Context
           @register_child(args...)
           "ASYNC"
         childless: =>
-          "NO_CHILDREN"
+          "CHILDLESS"
         end_of_block: =>
           @notify_parent()
           "COMPLETE"
@@ -61,10 +61,10 @@ module.exports = class Context
         async_child: (args...) =>
           @register_child(args...)
           "ASYNC"
-        child_done: (args...) =>
+        end_of_block: =>
           @notify_parent()
           "COMPLETE"
-        end_of_block: =>
+        completion: (args...) =>
           @notify_parent()
           "COMPLETE"
       ASYNC:
@@ -76,24 +76,27 @@ module.exports = class Context
           "ASYNC"
         end_of_block: =>
           "ASYNC"
-        child_done: (args...) =>
+        completion: (args...) =>
           @notify_parent()
           "COMPLETE"
-      NO_CHILDREN:
+      CHILDLESS:
         sync_child: (args...) =>
           @register_child(args...)
           "SYNC"
         async_child: (args...) =>
           @register_child(args...)
           "ASYNC"
-        child_done: (args...) =>
+        completion: (args...) =>
           @notify_parent()
           "COMPLETE"
       COMPLETE:
         sync_child: (args...) =>
-          throw new Error "Testify Context '#{@name}' created a synchronous child after it had completed"
+          # FIXME: probably shouldn't throw an error here, but I don't want to
+          # spend time figuring out the right way to fail here until I've got the
+          # transition table pinned down.
+          throw new Error("Context '#{@name}' created a synchronous child after it had completed")
           "COMPLETE"
-        child_done: (args...) =>
+        completion: (args...) =>
           "COMPLETE"
         reset: (args...) =>
           "START"
@@ -105,7 +108,7 @@ module.exports = class Context
       throw new Error("Context(#{@name}) in State(#{@state}) has no transition for Event(#{name})")
     else
       @state = transition(args...)
-      console.log "Context(#{@name}) in State(#{current_state}) got Event(#{name}) -> #{@state}".cyan
+      #console.log "Context(#{@name}) in State(#{current_state}) got Event(#{name}) -> #{@state}".cyan
     if @state != current_state
       @emitter.emit @state
 
@@ -115,12 +118,10 @@ module.exports = class Context
   notify_parent: ->
     process.nextTick =>
       if @parent?.is_done()
-        @parent?.event "child_done", @
+        @parent?.event "completion", @
 
   done: ->
-    process.nextTick =>
-      if @is_done()
-        @event "child_done"
+    @event "completion"
 
   register_child: (child) ->
     @children.push(child)

@@ -57,10 +57,10 @@ module.exports = class TestContext extends Context
       process.stdout.write(colorize("red", "F"))
     else
       process.stdout.write(colorize("yellow", "E"))
-    if @type == "sync"
-      @event("end_of_block")
-    else
-      @event("child_done")
+
+    if @type == "async"
+      @event("completion")
+
     @propagate_failure(error)
 
   timeout: (milliseconds, message) ->
