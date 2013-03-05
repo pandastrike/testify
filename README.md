@@ -23,7 +23,7 @@ Testify.test "a suite of tests", (context) ->
     some_async_call (error, result1) ->
 
       # If you give context.test() a function that takes no arguments,
-      # the test is assumed to be synchronous, and considered to have
+      # the test is required to be synchronous, and considered to have
       # passed if the function runs without throwing an error.
       context.test "result makes me happy", ->
         assert.ifError(error)
@@ -51,4 +51,15 @@ Testify.test "a suite of tests", (context) ->
 Run your test files with the `coffee` executable, or by requiring them.
 
     coffee path/to/test.coffee
+
+## Examples
+
+[Testing the Shred HTTP client](https://github.com/automatthew/shred/blob/master/test/shred_test.coffee)
+
+You can also use test nesting with entirely synchronous work, as a way to structure the
+test results:
+
+[Shred's header processing test](https://github.com/automatthew/shred/blob/master/test/headers_test.coffee)
+
+
 
