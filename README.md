@@ -5,10 +5,6 @@ Simple asynchronous testing, using the assertions of your choice.
 Written (and most easily used) in CoffeeScript.
 
 
-## Nested testing
-
-tbw
-
 ## Basic usage
 
 ```coffee
