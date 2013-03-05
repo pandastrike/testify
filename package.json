@@ -1,16 +1,19 @@
 {
   "name": "testify",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0",
   "description": "simple asynchronous testing using assertions of your choice",
-  "main": "testify.coffee",
+  "main": "src/testify.coffee",
   "files": [
-    "testify.coffee"
+    "src",
+    "README.md",
+    "statistics.js"
   ],
-  "dependencies":{
+  "dependencies": {
     "microtime": "0.3.3",
-    "colors": "0.6.x"
-   },
-  "repository": "",
-  "author": "",
+    "colors": "0.6.x",
+    "minfinite": "0.1.x"
+  },
+  "repository": "git@github.com:automatthew/testify.git",
+  "author": "Matthew King <automatthew@gmail.com>",
   "license": "MIT"
 }

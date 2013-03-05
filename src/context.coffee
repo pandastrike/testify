@@ -1,6 +1,6 @@
 
 EventEmitter = require("events").EventEmitter
-FSM = require "./fsm"
+FSM = require "minfinite"
 
 module.exports = class Context
 
