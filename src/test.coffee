@@ -38,6 +38,7 @@ module.exports = class TestContext extends Context
         process.stdout.write(colorize("green", "."))
     catch error
       @fail(error)
+      @event("end_of_block")
 
   pass: ->
     process.stdout.write(colorize("green", "."))
