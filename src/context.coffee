@@ -152,9 +152,10 @@ module.exports = class Context
     @children.every (child) -> child.state() == "COMPLETE"
 
   notify_parent: ->
-    process.nextTick =>
+    #process.nextTick =>
+    setTimeout (=>
       if @parent?.is_done()
-        @parent?.event "completion", @
+        @parent?.event "completion", @), 0
 
   done: ->
     @event "completion"

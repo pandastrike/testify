@@ -2,14 +2,13 @@ colors = require "colors"
 
 Context = require("./context")
 
-colorize = (color, string) ->
-  if TestContext.options.color
-    string[color]
-  else
-    string
-
 module.exports = class TestContext extends Context
 
+  result: (args...) ->
+    @constructor.output.result(args...)
+
+  status: (args...) ->
+    @constructor.output.status(args...)
 
   constructor: (args...) ->
     super(args...)
@@ -20,12 +19,13 @@ module.exports = class TestContext extends Context
 
   run: ->
     @emitter.on "COMPLETE", => @report()
-    process.on "exit", =>
-      if @state() != "COMPLETE"
-        message = colorize("bold", "Testify exited in an incomplete state!")
-        message = colorize("magenta", message)
-        console.log message
-        @report()
+    fn = =>
+      @report()
+
+    if process.on
+      process.on "exit", fn
+    else
+      setTimeout fn, 4000
     @_run()
 
   _run: ->
@@ -35,18 +35,18 @@ module.exports = class TestContext extends Context
     try
       super()
       if @type == "sync"
-        process.stdout.write(colorize("green", "."))
+        @status("pass", ".")
     catch error
       @fail(error)
       @event("end_of_block")
 
   pass: ->
-    process.stdout.write(colorize("green", "."))
+    @status("pass", ".")
     @done()
 
   fail: (error) ->
     if error.constructor == String
-      process.stdout.write(colorize("red", "F"))
+      @status("failure", "F")
       # create fake error with munged stack trace
       throwaway = new Error(error)
       message = error.toString()
@@ -55,9 +55,9 @@ module.exports = class TestContext extends Context
         stack: throwaway.stack.split("\n").slice(1).join("\n")
         toString: -> message
     else if error.name == "AssertionError"
-      process.stdout.write(colorize("red", "F"))
+      @status("failure", "F")
     else
-      process.stdout.write(colorize("yellow", "E"))
+      @status("error", "E")
 
     if @type == "async"
       @event("completion")
@@ -75,17 +75,23 @@ module.exports = class TestContext extends Context
     @parent?.propagate_failure("subtest failures")
 
   report: ->
-    console.log()
-    # NOTE: I can't remember why I'm constructing a pseudo context here. It's
-    # possible the reason disappeared in the reworking around an FSM.
+    if @_reported
+      return
+    else
+      @_reported = true
+
     suite =
-      name: "Passed: #{@name}"
+      name: "#{@name} (PASSED)"
       level: @level
       failed: @failed
       state: => @state()
 
-    if suite.failed
-      suite.name = "Failed: #{@name}"
+    #if @state() != "COMPLETE"
+      #@result "Testify exited in an incomplete state!", type: "incomplete"
+
+    if @failed
+      suite.name = "#{@name} (FAILED)"
+
     result = [suite]
 
     for context in @children
@@ -93,29 +99,19 @@ module.exports = class TestContext extends Context
 
     for test in result
       level = test.level
-      indent = ""
-      indent = indent + "    " while level--
 
       if test.state() != "COMPLETE"
-        line = colorize("magenta", indent + "Did not finish: #{test.name}")
+        @result "#{test.name} ( incomplete )", type: "incomplete", level: level
       else if test.failed == false
-        line = colorize("green", indent + test.name)
+        @result test.name, type: "pass", level: level
       else if test.failed.constructor == String || test.failed.name == "AssertionError"
-        line = colorize("red", indent + "#{test.name} ( #{test.failed.toString()} )")
+        @result "#{test.name} ( #{test.failed.toString()} )",
+          type: "failure", level: level, stack: test.failed.stack
       else
-        line = colorize("yellow", indent + "#{test.name} ( #{test.failed.toString()} )")
-      console.log(line)
-      if test.failed?.stack
-        where = test.failed.stack.split("\n")[1]
-        regex = /\((.*)\)/
-        match = regex.exec(where)
-        try
-          console.log "#{indent}    #{match[1]}"
-        catch error
-          console.log "#{indent}    #{where.slice(7)}"
+        @result "#{test.name} ( #{test.failed.toString()} )",
+          type: "error", level: level, stack: test.failed.stack
 
-    console.log()
-    if suite.failed
+    if suite.failed && process.exit
       process.exit(1)
 
   collect: (array=[]) ->
