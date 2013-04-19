@@ -18,9 +18,9 @@ module.exports = class TestContext extends Context
     @child(description, work)
 
   run: ->
-    @emitter.on "COMPLETE", => @report()
-    fn = =>
-      @report()
+    TestContext.reporter.add_suite(@)
+    @emitter.on "COMPLETE", => TestContext.reporter.report_suite(@)
+    fn = => TestContext.reporter.report_suite(@)
 
     if process.on
       process.on "exit", fn
@@ -73,50 +73,4 @@ module.exports = class TestContext extends Context
   propagate_failure: (error) ->
     @failed = error
     @parent?.propagate_failure("subtest failures")
-
-  report: ->
-    if @_reported
-      return
-    else
-      @_reported = true
-
-    suite =
-      name: "#{@name} (PASSED)"
-      level: @level
-      failed: @failed
-      state: => @state()
-
-    #if @state() != "COMPLETE"
-      #@result "Testify exited in an incomplete state!", type: "incomplete"
-
-    if @failed
-      suite.name = "#{@name} (FAILED)"
-
-    result = [suite]
-
-    for context in @children
-      context.collect(result)
-
-    for test in result
-      level = test.level
-
-      if test.state() != "COMPLETE"
-        @result "#{test.name} ( incomplete )", type: "incomplete", level: level
-      else if test.failed == false
-        @result test.name, type: "pass", level: level
-      else if test.failed.constructor == String || test.failed.name == "AssertionError"
-        @result "#{test.name} ( #{test.failed.toString()} )",
-          type: "failure", level: level, stack: test.failed.stack
-      else
-        @result "#{test.name} ( #{test.failed.toString()} )",
-          type: "error", level: level, stack: test.failed.stack
-
-    if suite.failed && process.exit
-      process.exit(1)
-
-  collect: (array=[]) ->
-    array.push(@)
-    for context in @children
-      context.collect(array)
-
 

@@ -3,6 +3,7 @@ EventEmitter = require("events").EventEmitter
 
 Context = require("./context")
 
+
 class TestOutput
 
   constructor: ->
@@ -52,6 +53,7 @@ TestContext.output = new TestOutput()
 
 
 Testify =
+  ConsoleReporter: require("./reporters").ConsoleReporter
   TestContext: TestContext
   count: 0
   emitter: new EventEmitter()
@@ -64,6 +66,7 @@ Testify =
 
   test: (name, fn) ->
     TestContext.options = Testify.options
+    TestContext.reporter = Testify.reporter || new Testify.ConsoleReporter()
     suite = new TestContext(name, fn)
     Testify.count++
     suite.emitter.once "COMPLETE", ->
