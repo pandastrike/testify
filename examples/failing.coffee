@@ -9,7 +9,7 @@ Testify.test "IntentionalFail", (context) ->
     assert.ok(false)
 
   context.test "IntentionalFail async", (context) ->
-    process.nextTick ->
+    saneTimeout 0, ->
       context.fail("Intentional failure")
 
   context.test "IntentionalFail async.mixed", (context) ->

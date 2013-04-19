@@ -3,7 +3,7 @@ assert = require "assert"
 
 saneTimeout = (ms, fn) -> setTimeout(fn, ms)
 
-Testify.test "passing", (context0) ->
+Testify.test "All Passing Tests", (context0) ->
 
   context0.test "passing sync 1", ->
     assert.ok(true)
