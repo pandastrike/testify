@@ -4,12 +4,6 @@ Context = require("./context")
 
 module.exports = class TestContext extends Context
 
-  result: (args...) ->
-    @constructor.output.result(args...)
-
-  status: (args...) ->
-    @constructor.output.status(args...)
-
   constructor: (args...) ->
     super(args...)
     @failed = false
@@ -19,17 +13,10 @@ module.exports = class TestContext extends Context
 
   run: ->
     TestContext.reporter.add_suite(@)
-    @emitter.on "COMPLETE", => TestContext.reporter.report_suite(@)
-    fn = => TestContext.reporter.report_suite(@)
-
-    if process.on
-      process.on "exit", fn
-    else
-      setTimeout fn, 4000
     @_run()
 
   _run: ->
-    @emitter.on "COMPLETE", =>
+    @fsm.emitter.once "COMPLETE", =>
       clearTimeout(@timeout_id) if @timeout_id
       @timeout_id = undefined
     try
@@ -40,13 +27,19 @@ module.exports = class TestContext extends Context
       @fail(error)
       @event("end_of_block")
 
+  status: (type) ->
+    @emitter.emit "status", type
+
   pass: ->
-    @status("pass", ".")
-    @done()
+    # required because of the @timeout function
+    # Possibly should be rolled into the state machine
+    unless @failed
+      @status("pass")
+      @done()
 
   fail: (error) ->
     if error.constructor == String
-      @status("failure", "F")
+      @status("failure")
       # create fake error with munged stack trace
       throwaway = new Error(error)
       message = error.toString()
@@ -55,9 +48,9 @@ module.exports = class TestContext extends Context
         stack: throwaway.stack.split("\n").slice(1).join("\n")
         toString: -> message
     else if error.name == "AssertionError"
-      @status("failure", "F")
+      @status("failure")
     else
-      @status("error", "E")
+      @status("error")
 
     if @type == "async"
       @event("completion")

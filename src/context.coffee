@@ -4,11 +4,11 @@ FSM = require "minfinite"
 
 module.exports = class Context
 
+  # Arity of a function can be determined using a function's `length` property
+  # For the purposes of this library, a `work` function which takes no args
+  # represents synchronous work. When the supplied function takes an argument,
+  # it will be treated as asynchronous and passed this context as that argument.
   constructor: (@name, @work, @parent) ->
-    # Arity of a function can be determined using the `length` property
-    # For the purposes of this library, a `work` function which takes no args
-    # represents synchronous work. When the supplied function takes an argument,
-    # it will be treated as asynchronous and passed this context as that argument.
     if @work.length == 0
       @type = "sync"
     else
@@ -20,6 +20,7 @@ module.exports = class Context
       @level = 0
 
     @children = []
+    @emitter = new EventEmitter()
 
     # Finite State Machine
     #
@@ -41,16 +42,13 @@ module.exports = class Context
     #
     # The return value of each event function is used to select the next state.
     @fsm = new FSM()
-    @emitter = @fsm.emitter
     @fsm.define
       START:
         sync_child:
           action: (args...) =>
-            @register_child(args...)
           next: "SYNC"
         async_child:
           action: (args...) =>
-            @register_child(args...)
           next: "ASYNC"
 
         childless:
@@ -64,12 +62,10 @@ module.exports = class Context
       SYNC:
         sync_child:
           action: (args...) =>
-            @register_child(args...)
           next: "SYNC"
 
         async_child:
           action: (args...) =>
-            @register_child(args...)
           next: "ASYNC"
 
         end_of_block:
@@ -85,12 +81,10 @@ module.exports = class Context
       ASYNC:
         sync_child:
           action: (args...) =>
-            @register_child(args...)
           next: "ASYNC"
 
         async_child:
           action: (args...) =>
-            @register_child(args...)
           next: "ASYNC"
 
         end_of_block:
@@ -105,12 +99,10 @@ module.exports = class Context
       CHILDLESS:
         sync_child:
           action: (args...) =>
-            @register_child(args...)
           next: "SYNC"
 
         async_child:
           action: (args...) =>
-            @register_child(args...)
           next: "ASYNC"
 
         completion:
@@ -138,7 +130,7 @@ module.exports = class Context
     @fsm.state
 
   event: (name, args...) ->
-    current = @fsm.state
+    #current = @fsm.state
     @fsm.event(name, args...)
     #console.log()
     #console.log
@@ -160,9 +152,6 @@ module.exports = class Context
   done: ->
     @event "completion"
 
-  register_child: (child) ->
-    @children.push(child)
-
   child: (description, work) ->
     child = new @constructor(description, work, @)
     if child.type == "sync"
@@ -171,6 +160,8 @@ module.exports = class Context
       @event "async_child", child
     else
       throw new Error("bad type: #{child.type}")
+    @children.push(child)
+    @emitter.emit "child", child
     child._run()
 
 

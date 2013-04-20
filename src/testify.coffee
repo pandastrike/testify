@@ -49,11 +49,12 @@ class TestOutput
 
 
 TestContext = require("./test")
-TestContext.output = new TestOutput()
+#TestContext.output = new TestOutput()
 
 
 Testify =
   ConsoleReporter: require("./reporters").ConsoleReporter
+  HTMLReporter: require("./reporters").HTMLReporter
   TestContext: TestContext
   count: 0
   emitter: new EventEmitter()

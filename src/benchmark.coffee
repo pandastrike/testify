@@ -18,12 +18,12 @@ module.exports = class Benchmark extends Context
     results = {}
 
     suite_start = microtime.now()
-    @emitter.on "all_done", (results) =>
+    done_handler = =>
       finish_time = microtime.now()
       out =
         runtime: finish_time - suite_start
         data: data = {}
-      for name, values of results
+      for name, values of @results
         data[name] = new Dataset(values)
       if callback
         callback(out)
@@ -38,9 +38,9 @@ module.exports = class Benchmark extends Context
         @_run()
       else
         process.stdout.write("\n")
-        @emitter.emit "all_done", @results
+        done_handler()
 
-    @emitter.on "COMPLETE", =>
+    @fsm.emitter.on "COMPLETE", =>
       @event "reset"
       iterate()
     iterate()
@@ -48,7 +48,7 @@ module.exports = class Benchmark extends Context
 
   _run: ->
     @record_start(@name, -microtime.now())
-    @emitter.once "COMPLETE", =>
+    @fsm.emitter.once "COMPLETE", =>
       finish_time = microtime.now()
       @record_end(@name, finish_time)
     super()
