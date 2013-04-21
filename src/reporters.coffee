@@ -100,9 +100,10 @@ class ConsoleReporter
 
 
 
-class HTMLReporter
+class DOMReporter
 
-  constructor: (id) ->
+  constructor: (id, options={}) ->
+    @timeout = options.timeout || 2000
     @root = document.getElementById(id)
     @suites = []
 
@@ -111,7 +112,7 @@ class HTMLReporter
     suite.emitter.on "child", (child) =>
       @handle_child(suite, child)
     suite.fsm.emitter.on "COMPLETE", => @report_suite(suite)
-    setTimeout (=> @report_suite(suite)), 2000
+    setTimeout (=> @report_suite(suite)), @timeout
 
   handle_child: (suite, child) ->
     @test_dom(child)
@@ -127,9 +128,18 @@ class HTMLReporter
     else
       suite._reported = true
 
+    if suite.state() != "COMPLETE"
+      suite._html.title.classList.add "incomplete"
+    else if suite.failed == false
+      suite._html.title.classList.add "pass"
+    else
+      suite._html.title.classList.add "failed"
+
     # We can iterate over the tests breadth-first because the hierarchical
     # structure was already arranged in the DOM.
-    tests = @collect(suite)
+    tests = []
+    for test in suite.children
+      @collect(test, tests)
 
     for test in tests
       level = test.level
@@ -153,7 +163,7 @@ class HTMLReporter
     suite._html =
       main: document.createElement("div")
       title: document.createElement("h3")
-      tests: document.createElement("div")
+      tests: document.createElement("ul")
     {main, tests, title} = suite._html
     main.classList.add "testify_suite"
     title.textContent = suite.name
@@ -162,27 +172,59 @@ class HTMLReporter
     @root.appendChild(main)
     
   test_dom: (test) ->
-    test._html = {tests: document.createElement("p")}
-    test._html.tests.textContent = test.name
-    test.parent._html.tests.appendChild test._html.tests
+    test._html =
+      name: document.createElement("li")
 
-  status: (suite, child, type) ->
+    test._html.name.classList.add("testify_test")
+    span = document.createElement("span")
+    span.classList.add("testify_test_name")
+    span.textContent = test.name
+    test._html.name.appendChild(span)
+    if test.parent._html.tests
+    else
+      tests = test.parent._html.tests = document.createElement("ul")
+      test.parent._html.name.appendChild(tests)
+    test.parent._html.tests.appendChild test._html.name
+
+  status: (suite, test, type) ->
     fn = =>
-      element = child._html.tests
-      element.classList.add type
+      element = test._html.name
+      span = element.children[0]
+      span.classList.add type
+      if type == "failure" || type == "error"
+        span.textContent = span.textContent + " (#{test.failed.toString()})"
+
+        stacky = document.createElement("pre")
+        where = test.failed.stack.split("\n")[1]
+        regex = /\((.*)\)/
+        match = regex.exec(where)
+        try
+          stacky.textContent = match[1]
+        catch error
+          stacky.textContent = where.slice(7)
+
+        stacky.classList.add "stack"
+        element.insertBefore(stacky, span.nextSibling)
+      else if type == "incomplete"
+        span.textContent = span.textContent + " (incomplete)"
     # fakery to make you feel like we're doing work
-    setTimeout fn, 100
+    setTimeout fn, 50
 
   result: (test, options) ->
-    if test.children.length > 0
-      element = test._html.tests
+    if test.children.length > 0 || options.type == "incomplete"
+      element = test._html.name
       if options.type
-        element.classList.add options.type
+        span = element.children[0]
+        span.classList.add options.type
         type_string = " (#{options.type})"
+        if options.type == "failure"
+          span.textContent = span.textContent + " (#{test.failed.toString()})"
+        else if options.type == "incomplete"
+          span.textContent = span.textContent + " (incomplete)"
 
 
 
 module.exports =
   ConsoleReporter: ConsoleReporter
-  HTMLReporter: HTMLReporter
+  DOMReporter: DOMReporter
 

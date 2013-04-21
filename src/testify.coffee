@@ -54,7 +54,7 @@ TestContext = require("./test")
 
 Testify =
   ConsoleReporter: require("./reporters").ConsoleReporter
-  HTMLReporter: require("./reporters").HTMLReporter
+  DOMReporter: require("./reporters").DOMReporter
   TestContext: TestContext
   count: 0
   emitter: new EventEmitter()
