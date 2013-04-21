@@ -1,0 +1,12 @@
+{
+  "name": "testify-browser",
+  "version": "0.1.0",
+  "description": "Testify in the browser",
+  "main": "application.coffee",
+  "repository": "",
+  "author": "Matthew King",
+  "license": "MIT",
+  "dependencies": {
+    "testify": "0.2.x"
+  }
+}
