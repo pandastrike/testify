@@ -9,7 +9,8 @@ class ConsoleReporter
     suite.emitter.on "child", (child) =>
       @hook(child)
 
-    suite.fsm.emitter.on "COMPLETE", => @report_suite(suite)
+    suite.fsm.emitter.on "COMPLETE", =>
+      process.nextTick (=> @report_suite(suite))
     process.on "exit", => @report_suite(suite)
 
   hook: (child) ->
@@ -70,8 +71,9 @@ class ConsoleReporter
 
     if options.type
       string = @colorize(options.type, string)
+
+    space = ""
     if level = options.level
-      space = ""
       space = space + "    " while level--
       string = space + string
     console.log(string)

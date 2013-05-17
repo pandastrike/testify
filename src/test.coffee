@@ -27,6 +27,17 @@ module.exports = class TestContext extends Context
       @fail(error)
       @event("end_of_block")
 
+  event: (args...) ->
+    try
+      super(args...)
+    catch error
+      if error.state == "COMPLETE" && error.event == "async_child"
+        my_error = new Error "Bad Testify usage: Can't create async test after the parent context completed."
+        my_error.stack = error.stack.split("\n").slice(5).join("\n")
+        @fail(my_error)
+      else
+        throw error
+
   status: (type) ->
     @emitter.emit "status", type
 

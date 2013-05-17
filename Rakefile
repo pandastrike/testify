@@ -9,3 +9,4 @@ task "bundle:example" do
     sh "ark package < manifest.json > bundle.js"
   end
 end
+

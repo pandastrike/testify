@@ -1,6 +1,6 @@
 
 EventEmitter = require("events").EventEmitter
-FSM = require "minfinite"
+FSM = require "./minfinite"
 
 module.exports = class Context
 
@@ -111,14 +111,6 @@ module.exports = class Context
           next: "COMPLETE"
 
       COMPLETE:
-        sync_child:
-          action: =>
-            # FIXME: probably shouldn't throw an error here, but I don't want to
-            # spend time figuring out the right way to fail here until I've got the
-            # transition table pinned down.
-            throw new Error("Context '#{@name}' created a synchronous child after it had completed")
-          next: "COMPLETE"
-
         completion:
           action: (args...) =>
           next: "COMPLETE"
