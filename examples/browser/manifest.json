@@ -2,8 +2,6 @@
   "source": "./",
   "files": [
     "application.coffee",
-    "bundle.js",
-    "manifest.json",
     "node_modules/testify/node_modules/colors/colors.js",
     "node_modules/testify/node_modules/colors/example.js",
     "node_modules/testify/node_modules/colors/package.json",
@@ -11,28 +9,18 @@
     "node_modules/testify/node_modules/minfinite/minfinite.js",
     "node_modules/testify/node_modules/minfinite/package.json",
     "node_modules/testify/package.json",
-    "node_modules/testify/src/benchmark.coffee",
     "node_modules/testify/src/context.coffee",
     "node_modules/testify/src/reporters.coffee",
     "node_modules/testify/src/test.coffee",
     "node_modules/testify/src/testify.coffee",
-    "node_modules/testify/statistics.js",
     "package.json"
   ],
   "native_modules": [
     "assert",
-    "child_process",
-    "crypto",
     "events",
     "fs",
-    "http",
-    "https",
     "module",
     "path",
-    "querystring",
-    "stream",
-    "sys",
-    "tty",
     "url",
     "util"
   ]

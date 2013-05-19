@@ -9,7 +9,7 @@ var global = (function() {
       root: {
         "application.coffee": {
           "__stat": {
-            "dev": 16777217,
+            "dev": 16777218,
             "mode": 33188,
             "nlink": 1,
             "uid": 501,
@@ -19,122 +19,84 @@ var global = (function() {
             "ino": 4747837,
             "size": 3029,
             "blocks": 8,
-            "atime": "2013-04-26T18:16:26.000Z",
+            "atime": "2013-05-19T22:23:43.000Z",
             "mtime": "2013-04-21T17:01:51.000Z",
             "ctime": "2013-04-21T17:01:51.000Z",
             "type": "file"
           },
           "__ref": "23c52402856e2dd41b24ee89a97a0dfe"
         },
-        "bundle.js": {
-          "__stat": {
-            "dev": 16777217,
-            "mode": 33188,
-            "nlink": 1,
-            "uid": 501,
-            "gid": 20,
-            "rdev": 0,
-            "blksize": 4096,
-            "ino": 4720983,
-            "size": 0,
-            "blocks": 0,
-            "atime": "2013-04-26T18:16:26.000Z",
-            "mtime": "2013-04-26T18:16:26.000Z",
-            "ctime": "2013-04-26T18:16:26.000Z",
-            "type": "file"
-          },
-          "__ref": "d41d8cd98f00b204e9800998ecf8427e"
-        },
-        "manifest.json": {
-          "__stat": {
-            "dev": 16777217,
-            "mode": 33188,
-            "nlink": 1,
-            "uid": 501,
-            "gid": 20,
-            "rdev": 0,
-            "blksize": 4096,
-            "ino": 4748117,
-            "size": 1031,
-            "blocks": 8,
-            "atime": "2013-04-26T18:16:26.000Z",
-            "mtime": "2013-04-21T17:16:30.000Z",
-            "ctime": "2013-04-21T17:16:30.000Z",
-            "type": "file"
-          },
-          "__ref": "72987102e883ce619e533815e3c1087c"
-        },
         "node_modules": {
           "__stat": {
-            "dev": 16777217,
+            "dev": 16777218,
             "mode": 16877,
-            "nlink": 11,
+            "nlink": 10,
             "uid": 501,
             "gid": 20,
             "rdev": 0,
             "blksize": 4096,
             "ino": 4717675,
-            "size": 374,
+            "size": 340,
             "blocks": 0,
-            "atime": "2013-04-26T18:15:43.000Z",
-            "mtime": "2013-04-26T18:15:04.000Z",
-            "ctime": "2013-04-26T18:15:04.000Z",
+            "atime": "2013-05-19T22:23:16.000Z",
+            "mtime": "2013-05-19T22:19:51.000Z",
+            "ctime": "2013-05-19T22:19:51.000Z",
             "type": "directory"
           },
           "testify": {
             "__stat": {
-              "dev": 16777217,
+              "dev": 16777218,
               "mode": 16877,
-              "nlink": 11,
+              "nlink": 10,
               "uid": 501,
               "gid": 20,
               "rdev": 0,
               "blksize": 4096,
               "ino": 4717675,
-              "size": 374,
+              "size": 340,
               "blocks": 0,
-              "atime": "2013-04-26T18:15:43.000Z",
-              "mtime": "2013-04-26T18:15:04.000Z",
-              "ctime": "2013-04-26T18:15:04.000Z",
+              "atime": "2013-05-19T22:23:16.000Z",
+              "mtime": "2013-05-19T22:19:51.000Z",
+              "ctime": "2013-05-19T22:19:51.000Z",
               "type": "directory"
             },
             "node_modules": {
               "__stat": {
-                "dev": 16777217,
+                "dev": 16777218,
                 "mode": 16877,
-                "nlink": 11,
+                "nlink": 10,
                 "uid": 501,
                 "gid": 20,
                 "rdev": 0,
                 "blksize": 4096,
                 "ino": 4717675,
-                "size": 374,
+                "size": 340,
                 "blocks": 0,
-                "atime": "2013-04-26T18:15:43.000Z",
-                "mtime": "2013-04-26T18:15:04.000Z",
-                "ctime": "2013-04-26T18:15:04.000Z",
+                "atime": "2013-05-19T22:23:16.000Z",
+                "mtime": "2013-05-19T22:19:51.000Z",
+                "ctime": "2013-05-19T22:19:51.000Z",
                 "type": "directory"
               },
               "colors": {
                 "__stat": {
-                  "dev": 16777217,
+                  "dev": 16777218,
                   "mode": 16877,
-                  "nlink": 11,
+                  "nlink": 10,
                   "uid": 501,
                   "gid": 20,
                   "rdev": 0,
                   "blksize": 4096,
                   "ino": 4717675,
-                  "size": 374,
+                  "size": 340,
                   "blocks": 0,
-                  "atime": "2013-04-26T18:15:43.000Z",
-                  "mtime": "2013-04-26T18:15:04.000Z",
-                  "ctime": "2013-04-26T18:15:04.000Z",
+                  "atime": "2013-05-19T22:23:16.000Z",
+                  "mtime": "2013-05-19T22:19:51.000Z",
+                  "ctime": "2013-05-19T22:19:51.000Z",
                   "type": "directory"
                 },
                 "colors.js": {
                   "__stat": {
-                    "dev": 16777217,
+                    "dev": 16777218,
                     "mode": 33188,
                     "nlink": 1,
                     "uid": 501,
@@ -144,7 +106,7 @@ var global = (function() {
                     "ino": 4748192,
                     "size": 7705,
                     "blocks": 16,
-                    "atime": "2013-04-26T18:16:26.000Z",
+                    "atime": "2013-05-19T22:23:43.000Z",
                     "mtime": "2011-12-09T12:35:20.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -153,7 +115,7 @@ var global = (function() {
                 },
                 "example.js": {
                   "__stat": {
-                    "dev": 16777217,
+                    "dev": 16777218,
                     "mode": 33188,
                     "nlink": 1,
                     "uid": 501,
@@ -163,7 +125,7 @@ var global = (function() {
                     "ino": 4748196,
                     "size": 2039,
                     "blocks": 8,
-                    "atime": "2013-04-26T18:16:26.000Z",
+                    "atime": "2013-05-19T22:23:43.000Z",
                     "mtime": "2011-12-09T12:35:20.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -172,7 +134,7 @@ var global = (function() {
                 },
                 "package.json": {
                   "__stat": {
-                    "dev": 16777217,
+                    "dev": 16777218,
                     "mode": 33188,
                     "nlink": 1,
                     "uid": 501,
@@ -182,7 +144,7 @@ var global = (function() {
                     "ino": 4748189,
                     "size": 1793,
                     "blocks": 8,
-                    "atime": "2013-04-26T18:16:26.000Z",
+                    "atime": "2013-05-19T22:23:43.000Z",
                     "mtime": "2013-04-21T17:16:52.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -191,7 +153,7 @@ var global = (function() {
                 },
                 "test.js": {
                   "__stat": {
-                    "dev": 16777217,
+                    "dev": 16777218,
                     "mode": 33188,
                     "nlink": 1,
                     "uid": 501,
@@ -201,7 +163,7 @@ var global = (function() {
                     "ino": 4748198,
                     "size": 1958,
                     "blocks": 8,
-                    "atime": "2013-04-26T18:16:26.000Z",
+                    "atime": "2013-05-19T22:23:43.000Z",
                     "mtime": "2011-12-09T12:35:20.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -211,24 +173,24 @@ var global = (function() {
               },
               "minfinite": {
                 "__stat": {
-                  "dev": 16777217,
+                  "dev": 16777218,
                   "mode": 16877,
-                  "nlink": 11,
+                  "nlink": 10,
                   "uid": 501,
                   "gid": 20,
                   "rdev": 0,
                   "blksize": 4096,
                   "ino": 4717675,
-                  "size": 374,
+                  "size": 340,
                   "blocks": 0,
-                  "atime": "2013-04-26T18:15:43.000Z",
-                  "mtime": "2013-04-26T18:15:04.000Z",
-                  "ctime": "2013-04-26T18:15:04.000Z",
+                  "atime": "2013-05-19T22:23:16.000Z",
+                  "mtime": "2013-05-19T22:19:51.000Z",
+                  "ctime": "2013-05-19T22:19:51.000Z",
                   "type": "directory"
                 },
                 "minfinite.js": {
                   "__stat": {
-                    "dev": 16777217,
+                    "dev": 16777218,
                     "mode": 33188,
                     "nlink": 1,
                     "uid": 501,
@@ -238,7 +200,7 @@ var global = (function() {
                     "ino": 4748208,
                     "size": 2161,
                     "blocks": 8,
-                    "atime": "2013-04-26T18:16:26.000Z",
+                    "atime": "2013-05-19T22:23:43.000Z",
                     "mtime": "2013-03-04T18:11:25.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -247,7 +209,7 @@ var global = (function() {
                 },
                 "package.json": {
                   "__stat": {
-                    "dev": 16777217,
+                    "dev": 16777218,
                     "mode": 33188,
                     "nlink": 1,
                     "uid": 501,
@@ -257,7 +219,7 @@ var global = (function() {
                     "ino": 4748204,
                     "size": 581,
                     "blocks": 8,
-                    "atime": "2013-04-26T18:16:26.000Z",
+                    "atime": "2013-05-19T22:23:43.000Z",
                     "mtime": "2013-04-21T17:16:52.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -268,7 +230,7 @@ var global = (function() {
             },
             "package.json": {
               "__stat": {
-                "dev": 16777217,
+                "dev": 16777218,
                 "mode": 33188,
                 "nlink": 1,
                 "uid": 501,
@@ -278,7 +240,7 @@ var global = (function() {
                 "ino": 4748158,
                 "size": 2726,
                 "blocks": 8,
-                "atime": "2013-04-26T18:16:26.000Z",
+                "atime": "2013-05-19T22:23:43.000Z",
                 "mtime": "2013-04-21T17:16:51.000Z",
                 "ctime": "2013-04-21T17:16:51.000Z",
                 "type": "file"
@@ -287,43 +249,24 @@ var global = (function() {
             },
             "src": {
               "__stat": {
-                "dev": 16777217,
+                "dev": 16777218,
                 "mode": 16877,
-                "nlink": 11,
+                "nlink": 10,
                 "uid": 501,
                 "gid": 20,
                 "rdev": 0,
                 "blksize": 4096,
                 "ino": 4717675,
-                "size": 374,
+                "size": 340,
                 "blocks": 0,
-                "atime": "2013-04-26T18:15:43.000Z",
-                "mtime": "2013-04-26T18:15:04.000Z",
-                "ctime": "2013-04-26T18:15:04.000Z",
+                "atime": "2013-05-19T22:23:16.000Z",
+                "mtime": "2013-05-19T22:19:51.000Z",
+                "ctime": "2013-05-19T22:19:51.000Z",
                 "type": "directory"
-              },
-              "benchmark.coffee": {
-                "__stat": {
-                  "dev": 16777217,
-                  "mode": 33188,
-                  "nlink": 1,
-                  "uid": 501,
-                  "gid": 20,
-                  "rdev": 0,
-                  "blksize": 4096,
-                  "ino": 4748164,
-                  "size": 1895,
-                  "blocks": 8,
-                  "atime": "2013-04-26T18:16:26.000Z",
-                  "mtime": "2013-04-20T16:26:57.000Z",
-                  "ctime": "2013-04-21T17:16:51.000Z",
-                  "type": "file"
-                },
-                "__ref": "e771513490ac1884ffed5cef377b37be"
               },
               "context.coffee": {
                 "__stat": {
-                  "dev": 16777217,
+                  "dev": 16777218,
                   "mode": 33188,
                   "nlink": 1,
                   "uid": 501,
@@ -333,7 +276,7 @@ var global = (function() {
                   "ino": 4748165,
                   "size": 4331,
                   "blocks": 16,
-                  "atime": "2013-04-26T18:16:26.000Z",
+                  "atime": "2013-05-19T22:23:43.000Z",
                   "mtime": "2013-04-20T16:46:14.000Z",
                   "ctime": "2013-04-21T17:16:51.000Z",
                   "type": "file"
@@ -342,7 +285,7 @@ var global = (function() {
               },
               "reporters.coffee": {
                 "__stat": {
-                  "dev": 16777217,
+                  "dev": 16777218,
                   "mode": 33188,
                   "nlink": 1,
                   "uid": 501,
@@ -352,7 +295,7 @@ var global = (function() {
                   "ino": 4748166,
                   "size": 6394,
                   "blocks": 16,
-                  "atime": "2013-04-26T18:16:26.000Z",
+                  "atime": "2013-05-19T22:23:43.000Z",
                   "mtime": "2013-04-21T17:09:23.000Z",
                   "ctime": "2013-04-21T17:16:51.000Z",
                   "type": "file"
@@ -361,7 +304,7 @@ var global = (function() {
               },
               "test.coffee": {
                 "__stat": {
-                  "dev": 16777217,
+                  "dev": 16777218,
                   "mode": 33188,
                   "nlink": 1,
                   "uid": 501,
@@ -371,7 +314,7 @@ var global = (function() {
                   "ino": 4748167,
                   "size": 1584,
                   "blocks": 8,
-                  "atime": "2013-04-26T18:16:26.000Z",
+                  "atime": "2013-05-19T22:23:43.000Z",
                   "mtime": "2013-04-20T17:00:49.000Z",
                   "ctime": "2013-04-21T17:16:51.000Z",
                   "type": "file"
@@ -380,7 +323,7 @@ var global = (function() {
               },
               "testify.coffee": {
                 "__stat": {
-                  "dev": 16777217,
+                  "dev": 16777218,
                   "mode": 33188,
                   "nlink": 1,
                   "uid": 501,
@@ -390,38 +333,19 @@ var global = (function() {
                   "ino": 4748168,
                   "size": 1906,
                   "blocks": 8,
-                  "atime": "2013-04-26T18:16:26.000Z",
+                  "atime": "2013-05-19T22:23:43.000Z",
                   "mtime": "2013-04-21T16:54:10.000Z",
                   "ctime": "2013-04-21T17:16:51.000Z",
                   "type": "file"
                 },
                 "__ref": "1acd0107c78da6657c2d635a044b63b7"
               }
-            },
-            "statistics.js": {
-              "__stat": {
-                "dev": 16777217,
-                "mode": 33188,
-                "nlink": 1,
-                "uid": 501,
-                "gid": 20,
-                "rdev": 0,
-                "blksize": 4096,
-                "ino": 4748160,
-                "size": 7260,
-                "blocks": 16,
-                "atime": "2013-04-26T18:16:26.000Z",
-                "mtime": "2013-02-15T02:25:38.000Z",
-                "ctime": "2013-04-21T17:16:51.000Z",
-                "type": "file"
-              },
-              "__ref": "d5618ac652297a3b9b8a6b6a4104f37b"
             }
           }
         },
         "package.json": {
           "__stat": {
-            "dev": 16777217,
+            "dev": 16777218,
             "mode": 33188,
             "nlink": 1,
             "uid": 501,
@@ -431,7 +355,7 @@ var global = (function() {
             "ino": 4718701,
             "size": 245,
             "blocks": 8,
-            "atime": "2013-04-26T18:16:26.000Z",
+            "atime": "2013-05-19T22:23:44.000Z",
             "mtime": "2013-04-19T18:38:38.000Z",
             "ctime": "2013-04-19T18:38:38.000Z",
             "type": "file"
@@ -441,8 +365,6 @@ var global = (function() {
       },
       content: {
         "23c52402856e2dd41b24ee89a97a0dfe": "MjNjNTI0MDI4NTZlMmRkNDFiMjRlZTg5YTk3YTBkZmU=",
-        "d41d8cd98f00b204e9800998ecf8427e": "ZDQxZDhjZDk4ZjAwYjIwNGU5ODAwOTk4ZWNmODQyN2U=",
-        "72987102e883ce619e533815e3c1087c": "ewogICJzb3VyY2UiOiAiLi8iLAogICJmaWxlcyI6IFsKICAgICJhcHBsaWNhdGlvbi5jb2ZmZWUiLAogICAgImJ1bmRsZS5qcyIsCiAgICAibWFuaWZlc3QuanNvbiIsCiAgICAibm9kZV9tb2R1bGVzL3Rlc3RpZnkvbm9kZV9tb2R1bGVzL2NvbG9ycy9jb2xvcnMuanMiLAogICAgIm5vZGVfbW9kdWxlcy90ZXN0aWZ5L25vZGVfbW9kdWxlcy9jb2xvcnMvZXhhbXBsZS5qcyIsCiAgICAibm9kZV9tb2R1bGVzL3Rlc3RpZnkvbm9kZV9tb2R1bGVzL2NvbG9ycy9wYWNrYWdlLmpzb24iLAogICAgIm5vZGVfbW9kdWxlcy90ZXN0aWZ5L25vZGVfbW9kdWxlcy9jb2xvcnMvdGVzdC5qcyIsCiAgICAibm9kZV9tb2R1bGVzL3Rlc3RpZnkvbm9kZV9tb2R1bGVzL21pbmZpbml0ZS9taW5maW5pdGUuanMiLAogICAgIm5vZGVfbW9kdWxlcy90ZXN0aWZ5L25vZGVfbW9kdWxlcy9taW5maW5pdGUvcGFja2FnZS5qc29uIiwKICAgICJub2RlX21vZHVsZXMvdGVzdGlmeS9wYWNrYWdlLmpzb24iLAogICAgIm5vZGVfbW9kdWxlcy90ZXN0aWZ5L3NyYy9iZW5jaG1hcmsuY29mZmVlIiwKICAgICJub2RlX21vZHVsZXMvdGVzdGlmeS9zcmMvY29udGV4dC5jb2ZmZWUiLAogICAgIm5vZGVfbW9kdWxlcy90ZXN0aWZ5L3NyYy9yZXBvcnRlcnMuY29mZmVlIiwKICAgICJub2RlX21vZHVsZXMvdGVzdGlmeS9zcmMvdGVzdC5jb2ZmZWUiLAogICAgIm5vZGVfbW9kdWxlcy90ZXN0aWZ5L3NyYy90ZXN0aWZ5LmNvZmZlZSIsCiAgICAibm9kZV9tb2R1bGVzL3Rlc3RpZnkvc3RhdGlzdGljcy5qcyIsCiAgICAicGFja2FnZS5qc29uIgogIF0sCiAgIm5hdGl2ZV9tb2R1bGVzIjogWwogICAgImFzc2VydCIsCiAgICAiY2hpbGRfcHJvY2VzcyIsCiAgICAiY3J5cHRvIiwKICAgICJldmVudHMiLAogICAgImZzIiwKICAgICJodHRwIiwKICAgICJodHRwcyIsCiAgICAibW9kdWxlIiwKICAgICJwYXRoIiwKICAgICJxdWVyeXN0cmluZyIsCiAgICAic3RyZWFtIiwKICAgICJzeXMiLAogICAgInR0eSIsCiAgICAidXJsIiwKICAgICJ1dGlsIgogIF0KfQo=",
         "a089014e00fc816889fd3a26e987bdbd": "YTA4OTAxNGUwMGZjODE2ODg5ZmQzYTI2ZTk4N2JkYmQ=",
         "865b933cdca5bf49b1f012335b02ff93": "ODY1YjkzM2NkY2E1YmY0OWIxZjAxMjMzNWIwMmZmOTM=",
         "74c8622078cff87f7a2ddc5b866312ff": "ewogICJuYW1lIjogImNvbG9ycyIsCiAgImRlc2NyaXB0aW9uIjogImdldCBjb2xvcnMgaW4geW91ciBub2RlLmpzIGNvbnNvbGUgbGlrZSB3aGF0IiwKICAidmVyc2lvbiI6ICIwLjYuMC0xIiwKICAiYXV0aG9yIjogewogICAgIm5hbWUiOiAiTWFyYWsgU3F1aXJlcyIKICB9LAogICJyZXBvc2l0b3J5IjogewogICAgInR5cGUiOiAiZ2l0IiwKICAgICJ1cmwiOiAiaHR0cDovL2dpdGh1Yi5jb20vTWFyYWsvY29sb3JzLmpzLmdpdCIKICB9LAogICJlbmdpbmVzIjogewogICAgIm5vZGUiOiAiPj0wLjEuOTAiCiAgfSwKICAibWFpbiI6ICJjb2xvcnMiLAogICJyZWFkbWUiOiAiIyBjb2xvcnMuanMgLSBnZXQgY29sb3IgYW5kIHN0eWxlIGluIHlvdXIgbm9kZS5qcyBjb25zb2xlICggYW5kIGJyb3dzZXIgKSBsaWtlIHdoYXRcblxuPGltZyBzcmM9XCJodHRwOi8vaS5pbWd1ci5jb20vZ29KZE8ucG5nXCIgYm9yZGVyID0gXCIwXCIvPlxuXG5cbiMjIEluc3RhbGxhdGlvblxuXG4gICAgbnBtIGluc3RhbGwgY29sb3JzXG5cbiMjIGNvbG9ycyBhbmQgc3R5bGVzIVxuXG4tIGJvbGRcbi0gaXRhbGljXG4tIHVuZGVybGluZVxuLSBpbnZlcnNlXG4tIHllbGxvd1xuLSBjeWFuXG4tIHdoaXRlXG4tIG1hZ2VudGFcbi0gZ3JlZW5cbi0gcmVkXG4tIGdyZXlcbi0gYmx1ZVxuLSByYWluYm93XG4tIHplYnJhXG4tIHJhbmRvbVxuXG4jIyBVc2FnZVxuXG5gYGAganNcbnZhciBjb2xvcnMgPSByZXF1aXJlKCcuL2NvbG9ycycpO1xuXG5jb25zb2xlLmxvZygnaGVsbG8nLmdyZWVuKTsgLy8gb3V0cHV0cyBncmVlbiB0ZXh0XG5jb25zb2xlLmxvZygnaSBsaWtlIGNha2UgYW5kIHBpZXMnLnVuZGVybGluZS5yZWQpIC8vIG91dHB1dHMgcmVkIHVuZGVybGluZWQgdGV4dFxuY29uc29sZS5sb2coJ2ludmVyc2UgdGhlIGNvbG9yJy5pbnZlcnNlKTsgLy8gaW52ZXJzZXMgdGhlIGNvbG9yXG5jb25zb2xlLmxvZygnT01HIFJhaW5ib3dzIScucmFpbmJvdyk7IC8vIHJhaW5ib3cgKGlnbm9yZXMgc3BhY2VzKVxuYGBgXG5cbiMgQ3JlYXRpbmcgQ3VzdG9tIHRoZW1lc1xuXG5gYGBqc1xuXG52YXIgcmVxdWlyZSgnY29sb3JzJyk7XG5cbmNvbG9ycy5zZXRUaGVtZSh7XG4gIHNpbGx5OiAncmFpbmJvdycsXG4gIGlucHV0OiAnZ3JleScsXG4gIHZlcmJvc2U6ICdjeWFuJyxcbiAgcHJvbXB0OiAnZ3JleScsXG4gIGluZm86ICdncmVlbicsXG4gIGRhdGE6ICdncmV5JyxcbiAgaGVscDogJ2N5YW4nLFxuICB3YXJuOiAneWVsbG93JyxcbiAgZGVidWc6ICdibHVlJyxcbiAgZXJyb3I6ICdyZWQnXG59KTtcblxuLy8gb3V0cHV0cyByZWQgdGV4dFxuY29uc29sZS5sb2coXCJ0aGlzIGlzIGFuIGVycm9yXCIuZXJyb3IpO1xuXG4vLyBvdXRwdXRzIHllbGxvdyB0ZXh0XG5jb25zb2xlLmxvZyhcInRoaXMgaXMgYSB3YXJuaW5nXCIud2Fybik7XG5gYGBcblxuXG4jIyMgQ29udHJpYnV0b3JzIFxuXG5NYXJhayAoTWFyYWsgU3F1aXJlcylcbkFsZXhpcyBTZWxsaWVyIChjbG91ZGhlYWQpXG5tbWFsZWNraSAoTWFjaWVqIE1hxYJlY2tpKVxubmljb3JlZWQgKE5pY28gUmVlZClcbm1vcmdhbnJhbGxlbiAoTW9yZ2FuIEFsbGVuKVxuSnVzdGluQ2FtcGJlbGwgKEp1c3RpbiBDYW1wYmVsbClcbmRlZCAoRHVzdGluIERpYXopXG5cblxuIyMjIyAgLCBNYXJhayBTcXVpcmVzICwgSnVzdGluIENhbXBiZWxsLCBEdXN0aW4gRGlheiAoQGRlZClcbiIsCiAgInJlYWRtZUZpbGVuYW1lIjogIlJlYWRNZS5tZCIsCiAgIl9pZCI6ICJjb2xvcnNAMC42LjAtMSIsCiAgIl9mcm9tIjogImNvbG9yc0AwLjYueCIKfQo=",
@@ -450,43 +372,25 @@ var global = (function() {
         "d7c4041289e5445eec291db26b21409d": "ZDdjNDA0MTI4OWU1NDQ1ZWVjMjkxZGIyNmIyMTQwOWQ=",
         "e241c1de18faf4151605d7b35b8b9eab": "ewogICJuYW1lIjogIm1pbmZpbml0ZSIsCiAgInZlcnNpb24iOiAiMC4xLjAiLAogICJkZXNjcmlwdGlvbiI6ICJNaW5pbWFsIEZTTSBjbGFzcyIsCiAgImF1dGhvciI6IHsKICAgICJuYW1lIjogIk1hdHRoZXcgS2luZyIsCiAgICAiZW1haWwiOiAiYXV0b21hdHRoZXdAZ21haWwuY29tIgogIH0sCiAgIm1haW4iOiAibWluZmluaXRlLmpzIiwKICAiZmlsZXMiOiBbCiAgICAibWluZmluaXRlLmpzIgogIF0sCiAgInNjcmlwdHMiOiB7fSwKICAicmVwb3NpdG9yeSI6IHsKICAgICJ0eXBlIjogImdpdCIsCiAgICAidXJsIjogImdpdEBnaXRodWIuY29tOmF1dG9tYXR0aGV3L21pbmZpbml0ZS5naXQiCiAgfSwKICAiaG9tZXBhZ2UiOiAiaHR0cHM6Ly9naXRodWIuY29tL2F1dG9tYXR0aGV3L21pbmZpbml0ZSIsCiAgImtleXdvcmRzIjogWwogICAgImZzbSIsCiAgICAic3RhdGUgbWFjaGluZSIKICBdLAogICJsaWNlbnNlIjogIk1JVCIsCiAgIl9pZCI6ICJtaW5maW5pdGVAMC4xLjAiLAogICJyZWFkbWUiOiAiRVJST1I6IE5vIFJFQURNRS5tZCBmaWxlIGZvdW5kISIsCiAgIl9mcm9tIjogIm1pbmZpbml0ZUAwLjEueCIKfQo=",
         "78ddc1b1bc4a5a73b371ac17c278d46b": "ewogICJuYW1lIjogInRlc3RpZnkiLAogICJ2ZXJzaW9uIjogIjAuMi4yIiwKICAiZGVzY3JpcHRpb24iOiAic2ltcGxlIGFzeW5jaHJvbm91cyB0ZXN0aW5nIHVzaW5nIGFzc2VydGlvbnMgb2YgeW91ciBjaG9pY2UiLAogICJtYWluIjogInNyYy90ZXN0aWZ5LmNvZmZlZSIsCiAgImJpbiI6IHsKICAgICJ0ZXN0aWZ5IjogImJpbi90ZXN0aWZ5IgogIH0sCiAgImZpbGVzIjogWwogICAgInNyYyIsCiAgICAiYmluLyIsCiAgICAiUkVBRE1FLm1kIiwKICAgICJzdGF0aXN0aWNzLmpzIgogIF0sCiAgImRlcGVuZGVuY2llcyI6IHsKICAgICJvcHRpbWlzdCI6ICIwLjMuNSIsCiAgICAibWljcm90aW1lIjogIjAuMy4zIiwKICAgICJjb2xvcnMiOiAiMC42LngiLAogICAgIm1pbmZpbml0ZSI6ICIwLjEueCIKICB9LAogICJyZXBvc2l0b3J5IjogewogICAgInR5cGUiOiAiZ2l0IiwKICAgICJ1cmwiOiAiZ2l0QGdpdGh1Yi5jb206YXV0b21hdHRoZXcvdGVzdGlmeS5naXQiCiAgfSwKICAiYXV0aG9yIjogewogICAgIm5hbWUiOiAiTWF0dGhldyBLaW5nIiwKICAgICJlbWFpbCI6ICJhdXRvbWF0dGhld0BnbWFpbC5jb20iCiAgfSwKICAibGljZW5zZSI6ICJNSVQiLAogICJyZWFkbWUiOiAiIyBUZXN0aWZ5XG5cblNpbXBsZSBhc3luY2hyb25vdXMgdGVzdGluZywgdXNpbmcgdGhlIGFzc2VydGlvbnMgb2YgeW91ciBjaG9pY2UuXG5cbldyaXR0ZW4gKGFuZCBtb3N0IGVhc2lseSB1c2VkKSBpbiBDb2ZmZWVTY3JpcHQuXG5cblxuIyMgQmFzaWMgdXNhZ2VcblxuYGBgY29mZmVlXG5cblRlc3RpZnkudGVzdCBcImEgc3VpdGUgb2YgdGVzdHNcIiwgKGNvbnRleHQpIC0+XG5cbiAgIyBXaGVuIHlvdSBuZWVkIHRvIHRlc3QgdGhlIHJlc3VsdHMgb2YgYW4gYXN5bmNocm9ub3VzIGZ1bmN0aW9uLFxuICAjIGdpdmUgY29udGV4dC50ZXN0KCkgYSBmdW5jdGlvbiB0aGF0IHRha2VzIGFuIGFyZ3VtZW50LiAgWW91IGNhblxuICAjIHRoZW4gdXNlIHRoYXQgYXJndW1lbnQgYXMgYSBuZXcgY29udGV4dCBmb3IgbmVzdGluZyB0ZXN0cy5cbiAgY29udGV4dC50ZXN0IFwidGVzdGluZyBzb21ldGhpbmcgYXN5bmNocm9ub3VzXCIsIChjb250ZXh0KSAtPlxuXG4gICAgc29tZV9hc3luY19jYWxsIChlcnJvciwgcmVzdWx0MSkgLT5cblxuICAgICAgIyBJZiB5b3UgZ2l2ZSBjb250ZXh0LnRlc3QoKSBhIGZ1bmN0aW9uIHRoYXQgdGFrZXMgbm8gYXJndW1lbnRzLFxuICAgICAgIyB0aGUgdGVzdCBpcyByZXF1aXJlZCB0byBiZSBzeW5jaHJvbm91cywgYW5kIGNvbnNpZGVyZWQgdG8gaGF2ZVxuICAgICAgIyBwYXNzZWQgaWYgdGhlIGZ1bmN0aW9uIHJ1bnMgd2l0aG91dCB0aHJvd2luZyBhbiBlcnJvci5cbiAgICAgIGNvbnRleHQudGVzdCBcInJlc3VsdCBtYWtlcyBtZSBoYXBweVwiLCAtPlxuICAgICAgICBhc3NlcnQuaWZFcnJvcihlcnJvcilcbiAgICAgICAgYXNzZXJ0LmVxdWFsKHJlc3VsdDEsIFwicGllXCIpXG5cbiAgICAgIGNvbnRleHQudGVzdCBcImEgbmVzdGVkIGFzeW5jaHJvbm91cyB0ZXN0XCIsIChjb250ZXh0KSAtPlxuXG4gICAgICAgIGFub3RoZXJfYXN5bmNfY2FsbCByZXN1bHQxLCAgKGVycm9yLCByZXN1bHQyKSAtPlxuXG4gICAgICAgICAgY29udGV4dC50ZXN0IFwicmVzdWx0IG1ha2VzIG1lIGRlZXBseSBoYXBweVwiLCAtPlxuICAgICAgICAgICAgYXNzZXJ0LmlmRXJyb3IoZXJyb3IpXG4gICAgICAgICAgICBhc3NlcnQuZGVlcEVxdWFsIHJlc3VsdDIsIFtcImJhY29uXCIsIFwiY2hlZXNlXCIsIFwicGllXCJdXG5cbiAgICAgIGNvbnRleHQudGVzdCBcInNob3J0Y3V0IGZvciBwYXNzaW5nIGFuIGFzeW5jIHRlc3RcIiwgKGNvbnRleHQpIC0+XG4gICAgICAgIHByb2Nlc3MubmV4dFRpY2sgLT5cbiAgICAgICAgICAjIHlvdSBjYW4gY2FsbCBjb250ZXh0LnBhc3MoKSBpbnN0ZWFkIG9mIHVzaW5nIGEgc3luY2hyb25vdXMgdGVzdFxuICAgICAgICAgIGNvbnRleHQucGFzcygpXG5cbiAgICAgIGNvbnRleHQudGVzdCBcInNob3J0Y3V0IGZvciBmYWlsaW5nIGFuIGFzeW5jIHRlc3RcIiwgKGNvbnRleHQpIC0+XG4gICAgICAgIHByb2Nlc3MubmV4dFRpY2sgLT5cbiAgICAgICAgICBjb250ZXh0LmZhaWwoKVxuXG5gYGBcblxuUnVuIHlvdXIgdGVzdCBmaWxlcyB3aXRoIHRoZSBgY29mZmVlYCBleGVjdXRhYmxlLCBvciBieSByZXF1aXJpbmcgdGhlbS5cblxuICAgIGNvZmZlZSBwYXRoL3RvL3Rlc3QuY29mZmVlXG5cbiMjIEV4YW1wbGVzXG5cbltUZXN0aW5nIHRoZSBTaHJlZCBIVFRQIGNsaWVudF0oaHR0cHM6Ly9naXRodWIuY29tL2F1dG9tYXR0aGV3L3NocmVkL2Jsb2IvbWFzdGVyL3Rlc3Qvc2hyZWRfdGVzdC5jb2ZmZWUpXG5cbllvdSBjYW4gYWxzbyB1c2UgdGVzdCBuZXN0aW5nIHdpdGggZW50aXJlbHkgc3luY2hyb25vdXMgd29yaywgYXMgYSB3YXkgdG8gc3RydWN0dXJlIHRoZVxudGVzdCByZXN1bHRzOlxuXG5bU2hyZWQncyBoZWFkZXIgcHJvY2Vzc2luZyB0ZXN0XShodHRwczovL2dpdGh1Yi5jb20vYXV0b21hdHRoZXcvc2hyZWQvYmxvYi9tYXN0ZXIvdGVzdC9oZWFkZXJzX3Rlc3QuY29mZmVlKVxuXG5cblxuIiwKICAicmVhZG1lRmlsZW5hbWUiOiAiUkVBRE1FLm1kIiwKICAiX2lkIjogInRlc3RpZnlAMC4yLjIiLAogICJkaXN0IjogewogICAgInNoYXN1bSI6ICJkMTA0NzI1ZmJhNjY0NDUyOWU3MzRiNTY5YTA5ODVjYWNlMmU5ODFhIgogIH0sCiAgIl9mcm9tIjogIi4uLy4uLyIKfQo=",
-        "e771513490ac1884ffed5cef377b37be": "ZTc3MTUxMzQ5MGFjMTg4NGZmZWQ1Y2VmMzc3YjM3YmU=",
         "1f082de170804a1f8caa134abdafdb55": "MWYwODJkZTE3MDgwNGExZjhjYWExMzRhYmRhZmRiNTU=",
         "7abe6dc3c91fe653e9c4a2d096ee8684": "N2FiZTZkYzNjOTFmZTY1M2U5YzRhMmQwOTZlZTg2ODQ=",
         "62e49fef2333868ff4848cf4ec8f121d": "NjJlNDlmZWYyMzMzODY4ZmY0ODQ4Y2Y0ZWM4ZjEyMWQ=",
         "1acd0107c78da6657c2d635a044b63b7": "MWFjZDAxMDdjNzhkYTY2NTdjMmQ2MzVhMDQ0YjYzYjc=",
-        "d5618ac652297a3b9b8a6b6a4104f37b": "ZDU2MThhYzY1MjI5N2EzYjliOGE2YjZhNDEwNGYzN2I=",
         "4da661eb5390996e709a485de49a2fe3": "ewogICJuYW1lIjogInRlc3RpZnktYnJvd3NlciIsCiAgInZlcnNpb24iOiAiMC4xLjAiLAogICJkZXNjcmlwdGlvbiI6ICJUZXN0aWZ5IGluIHRoZSBicm93c2VyIiwKICAibWFpbiI6ICJhcHBsaWNhdGlvbi5jb2ZmZWUiLAogICJyZXBvc2l0b3J5IjogIiIsCiAgImF1dGhvciI6ICJNYXR0aGV3IEtpbmciLAogICJsaWNlbnNlIjogIk1JVCIsCiAgImRlcGVuZGVuY2llcyI6IHsKICAgICJ0ZXN0aWZ5IjogIjAuMi54IgogIH0KfQo=",
         "c4f9141dbd0d7a4e3dd3d1dc0a64c667": "YzRmOTE0MWRiZDBkN2E0ZTNkZDNkMWRjMGE2NGM2Njc=",
-        "0426b7a6289080ce650637f0ac6e7e0c": "MDQyNmI3YTYyODkwODBjZTY1MDYzN2YwYWM2ZTdlMGM=",
-        "a8aae685be6eeb8ec844ae9c4f5fd189": "YThhYWU2ODViZTZlZWI4ZWM4NDRhZTljNGY1ZmQxODk=",
         "b499eb63a89b9e6fb99ef1209a65ace6": "YjQ5OWViNjNhODliOWU2ZmI5OWVmMTIwOWE2NWFjZTY=",
         "4b089ad1310f754af3510dd2da9a1ff7": "NGIwODlhZDEzMTBmNzU0YWYzNTEwZGQyZGE5YTFmZjc=",
-        "5d6e2c2d895132330e91af96bc1409c7": "NWQ2ZTJjMmQ4OTUxMzIzMzBlOTFhZjk2YmMxNDA5Yzc=",
-        "8f99cc2b75044ae1f45cefc6948e42b3": "OGY5OWNjMmI3NTA0NGFlMWY0NWNlZmM2OTQ4ZTQyYjM=",
         "223f09f17e4aff9f2d05493c688f7934": "MjIzZjA5ZjE3ZTRhZmY5ZjJkMDU0OTNjNjg4Zjc5MzQ=",
         "7b51c3f0555ccb0c0f1fcd91d389ea1a": "N2I1MWMzZjA1NTVjY2IwYzBmMWZjZDkxZDM4OWVhMWE=",
-        "54c69a095dc8e4a9173bd8284c4e8ad7": "NTRjNjlhMDk1ZGM4ZTRhOTE3M2JkODI4NGM0ZThhZDc=",
-        "f0d5935f094eb3d9fb70c67795bd4caf": "ZjBkNTkzNWYwOTRlYjNkOWZiNzBjNjc3OTViZDRjYWY=",
-        "4e0d787840f05b0c47b10d63b6f3898f": "NGUwZDc4Nzg0MGYwNWIwYzQ3YjEwZDYzYjZmMzg5OGY=",
-        "12124e45d125f26e20242c0e81a80f19": "MTIxMjRlNDVkMTI1ZjI2ZTIwMjQyYzBlODFhODBmMTk=",
         "d0c9d6cc2490c964b789d43ae4803b7b": "ZDBjOWQ2Y2MyNDkwYzk2NGI3ODlkNDNhZTQ4MDNiN2I=",
         "ddeff58ff67e5d2d686891fc66ebb2b7": "ZGRlZmY1OGZmNjdlNWQyZDY4Njg5MWZjNjZlYmIyYjc="
       },
       native_modules: {
         "assert": "c4f9141dbd0d7a4e3dd3d1dc0a64c667",
-        "child_process": "0426b7a6289080ce650637f0ac6e7e0c",
-        "crypto": "a8aae685be6eeb8ec844ae9c4f5fd189",
         "events": "b499eb63a89b9e6fb99ef1209a65ace6",
         "fs": "4b089ad1310f754af3510dd2da9a1ff7",
-        "http": "5d6e2c2d895132330e91af96bc1409c7",
-        "https": "8f99cc2b75044ae1f45cefc6948e42b3",
         "module": "223f09f17e4aff9f2d05493c688f7934",
         "path": "7b51c3f0555ccb0c0f1fcd91d389ea1a",
-        "querystring": "54c69a095dc8e4a9173bd8284c4e8ad7",
-        "stream": "f0d5935f094eb3d9fb70c67795bd4caf",
-        "sys": "4e0d787840f05b0c47b10d63b6f3898f",
-        "tty": "12124e45d125f26e20242c0e81a80f19",
         "url": "d0c9d6cc2490c964b789d43ae4803b7b",
         "util": "ddeff58ff67e5d2d686891fc66ebb2b7"
       },
@@ -613,11 +517,6 @@ var global = (function() {
               });
             });
           };
-
-        },
-
-        "d41d8cd98f00b204e9800998ecf8427e": // from: bundle.js
-        function(exports, require, module, __filename, __dirname) {
 
         },
 
@@ -1087,153 +986,6 @@ THE SOFTWARE.
             })();
 
           }).call(this);
-
-        },
-
-        "e771513490ac1884ffed5cef377b37be": // from: node_modules/testify/src/benchmark.coffee
-        function(exports, require, module, __filename, __dirname) {
-          var Benchmark, Context, Dataset, microtime,
-          __hasProp = {}.hasOwnProperty,
-            __extends = function(child, parent) {
-              for (var key in parent) {
-                if (__hasProp.call(parent, key)) child[key] = parent[key];
-              }
-              function ctor() {
-                this.constructor = child;
-              }
-              ctor.prototype = parent.prototype;
-              child.prototype = new ctor();
-              child.__super__ = parent.prototype;
-              return child;
-            },
-            __slice = [].slice;
-
-          microtime = require("microtime");
-
-          require("../statistics");
-
-          Context = require("./context");
-
-          module.exports = Benchmark = (function(_super) {
-
-            __extends(Benchmark, _super);
-
-            function Benchmark() {
-              var args;
-              args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-              this.results = {};
-              Benchmark.__super__.constructor.apply(this, args);
-            }
-
-            Benchmark.prototype.measure = function(name, work) {
-              return this.child(name, work);
-            };
-
-            Benchmark.prototype.run = function(options, callback) {
-              var count, done_handler, iterate, iterations, results, suite_start,
-              _this = this;
-              iterations = options.iterations;
-              count = 0;
-              results = {};
-              suite_start = microtime.now();
-              done_handler = function() {
-                var data, finish_time, name, out, values, _ref;
-                finish_time = microtime.now();
-                out = {
-                  runtime: finish_time - suite_start,
-                  data: data = {}
-                };
-                _ref = _this.results;
-                for (name in _ref) {
-                  values = _ref[name];
-                  data[name] = new Dataset(values);
-                }
-                if (callback) {
-                  return callback(out);
-                }
-              };
-              process.stdout.write("Iteration: ");
-              iterate = function() {
-                if (++count <= iterations) {
-                  if (count % 5 === 0 || count === 1) {
-                    process.stdout.write(count.toString());
-                  } else {
-                    process.stdout.write(".");
-                  }
-                  return _this._run();
-                } else {
-                  process.stdout.write("\n");
-                  return done_handler();
-                }
-              };
-              this.fsm.emitter.on("COMPLETE", function() {
-                _this.event("reset");
-                return iterate();
-              });
-              return iterate();
-            };
-
-            Benchmark.prototype._run = function() {
-              var _this = this;
-              this.record_start(this.name, - microtime.now());
-              this.fsm.emitter.once("COMPLETE", function() {
-                var finish_time;
-                finish_time = microtime.now();
-                return _this.record_end(_this.name, finish_time);
-              });
-              return Benchmark.__super__._run.call(this);
-            };
-
-            Benchmark.prototype.record_start = function(name, value) {
-              var array, _base;
-              if (this.parent) {
-                return this.parent.record_start(name, value);
-              } else {
-                if (name !== this.name) {
-                  array = ((_base = this.results)[name] || (_base[name] = []));
-                  return array.push(value);
-                }
-              }
-            };
-
-            Benchmark.prototype.record_end = function(name, value) {
-              var array, index, _base;
-              if (this.parent) {
-                return this.parent.record_end(name, value);
-              } else {
-                if (name !== this.name) {
-                  array = ((_base = this.results)[name] || (_base[name] = []));
-                  index = array.length - 1;
-                  return array[index] = array[index] + value;
-                }
-              }
-            };
-
-            Benchmark.prototype.finish = function() {
-              if (this.is_done()) {
-                return this.event("completion");
-              }
-            };
-
-            return Benchmark;
-
-          })(Context);
-
-          Dataset = (function() {
-
-            function Dataset(array) {
-              this.data = array;
-            }
-
-            Dataset.prototype.summarize = function() {
-              var args, _ref;
-              args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-              return (_ref = this.data).summarize.apply(_ref, args);
-            };
-
-            return Dataset;
-
-          })();
 
         },
 
@@ -2029,215 +1781,6 @@ THE SOFTWARE.
 
         },
 
-        "d5618ac652297a3b9b8a6b6a4104f37b": // from: node_modules/testify/statistics.js
-        function(exports, require, module, __filename, __dirname) {
-          /****************************************************************************************************
-JavaScript Math and Statistics Library
-
-@file		pseudoMathStats.js
-@version	1.0
-@author 	Paul Ellis
-@url        http://code.google.com/p/pseudosavant
-@copyright 	Copyright 2010, Paul Ellis
-@license    BSD
-****************************************************************************************************/
-
-
-          /****************************************************************************************************
-Calculates the Standard Deviation of an array
-****************************************************************************************************/
-          Array.prototype.stdDev = function() {
-            // Calculate Mean
-            var mean = this.mean();
-
-            var length = this.length;
-
-            // Calculate Variance
-            for (var i = 0, sumOfSquares = 0; i < length; i++) {
-              sumOfSquares += Math.pow(this[i] - mean, 2);
-            }
-            var stdDev = Math.sqrt(sumOfSquares / length);
-
-            return stdDev;
-          }
-
-
-          /****************************************************************************************************
-Calculates the Variance of an array
-****************************************************************************************************/
-          Array.prototype.variance = function() {
-            // Calculate Mean
-            var mean = this.mean();
-
-            var length = this.length;
-
-            // Calculate Variance
-            for (var i = 0, sumOfSquares = 0; i < length; i++) {
-              sumOfSquares += Math.pow(this[i] - mean, 2);
-            }
-            var variance = sumOfSquares / length;
-
-            return variance;
-          }
-
-
-          /****************************************************************************************************
-Sums all values in an array
-****************************************************************************************************/
-          Array.prototype.sum = function() {
-            for (var i = 0, length = this.length, sum = 0; i < length; sum += this[i++]);
-            return sum;
-          }
-
-
-          /****************************************************************************************************
-Calculates the arithmetic mean of an array
-****************************************************************************************************/
-          Array.prototype.mean = function() {
-            for (var i = 0, length = this.length, sum = 0; i < length; sum += this[i++]);
-            var mean = sum / length;
-            return mean;
-          }
-
-
-          /****************************************************************************************************
-Returns the highest numeric value of an array
-****************************************************************************************************/
-          Array.prototype.max = function() {
-            return this.reduceRight(function(i, j) {
-              if (j < i) {
-                return i
-              } else {
-                return j
-              }
-            });
-          }
-
-
-          /****************************************************************************************************
-Returns the lowest numeric value of an array
-****************************************************************************************************/
-          Array.prototype.min = function() {
-            return this.reduceRight(function(i, j) {
-              if (j > i) {
-                return i
-              } else {
-                return j
-              }
-            });
-          }
-
-
-          /****************************************************************************************************
-Calculates the median of an array
-****************************************************************************************************/
-          Array.prototype.median = function() {
-            var length = this.length;
-
-            if (length % 2 == 1) // Odd
-            {
-              var middle = Math.floor(length / 2);
-              var median = this.sortNumber()[middle];
-            } else // Even
-            {
-              var middle = length / 2;
-              var sorted = this.sortNumber();
-              var median = (sorted[middle - 1] + sorted[middle]) / 2;
-            }
-            return median;
-          }
-
-
-          /****************************************************************************************************
-Returns the array sorted ascendingly, or decendingly if sortNumber(true).
-****************************************************************************************************/
-          Array.prototype.sortNumber = function(invert) {
-            if (invert == true) // Decending
-            {
-              return this.slice().sort(function(a, b) {
-                return a - b
-              }).reverse(); // Using reverse() is faster than b - a.
-            } else // Ascending, default
-            {
-              return this.slice().sort(function(a, b) {
-                return a - b
-              });
-            }
-          }
-
-
-          /****************************************************************************************************
-Returns an object containing the most common stats for the array.
-****************************************************************************************************/
-          Array.prototype.summarize = function summarize(places) {
-            if (!this.length) {
-              return {
-                error: "no values"
-              };
-            }
-            return {
-              sample_size: this.length,
-              mean: fixedDecimal(this.mean(), places),
-              max: fixedDecimal(this.max(), places),
-              median: fixedDecimal(this.median(), places),
-              min: fixedDecimal(this.min(), places),
-              stdDev: fixedDecimal(this.stdDev(), places),
-            };
-          };
-
-
-          var fixedDecimal = function fixedDecimal(num, numOfDec) {
-            var pow10s = Math.pow(10, numOfDec || 0);
-            return (numOfDec) ? Math.round(pow10s * num) / pow10s : num;
-          };
-
-
-          /****************************************************************************************************
-Lower tail quantile for standard normal distribution function.
-
-Written by Alankar Misra (alankar@digitalsutras.com)
-Algorithm by Peter John Acklam (pjacklam@online.no, http://home.online.no/~pjacklam)
-****************************************************************************************************/
-          function normsinv(p) {
-            // Coefficients in rational approximations
-            var a = new Array(-3.969683028665376e+01, 2.209460984245205e+02, - 2.759285104469687e+02, 1.383577518672690e+02, - 3.066479806614716e+01, 2.506628277459239e+00);
-
-            var b = new Array(-5.447609879822406e+01, 1.615858368580409e+02, - 1.556989798598866e+02, 6.680131188771972e+01, - 1.328068155288572e+01);
-
-            var c = new Array(-7.784894002430293e-03, - 3.223964580411365e-01, - 2.400758277161838e+00, - 2.549732539343734e+00,
-            4.374664141464968e+00, 2.938163982698783e+00);
-
-            var d = new Array(7.784695709041462e-03, 3.224671290700398e-01,
-            2.445134137142996e+00, 3.754408661907416e+00);
-
-            // Define break-points.
-            var plow = 0.02425;
-            var phigh = 1 - plow;
-
-            // Rational approximation for lower region:
-            if (p < plow) {
-              var q = Math.sqrt(-2 * Math.log(p));
-              return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
-            }
-
-            // Rational approximation for upper region:
-            if (phigh < p) {
-              var q = Math.sqrt(-2 * Math.log(1 - p));
-              return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
-            }
-
-            // Rational approximation for central region:
-            var q = p - 0.5;
-            var r = q * q;
-            return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
-          }
-
-
-
-
-
-        },
-
         "c4f9141dbd0d7a4e3dd3d1dc0a64c667": // from: 
         function(exports, require, module, __filename, __dirname) {
           // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
@@ -2569,18 +2112,6 @@ Algorithm by Peter John Acklam (pjacklam@online.no, http://home.online.no/~pjack
             }
           };
 
-        },
-
-        "0426b7a6289080ce650637f0ac6e7e0c": // from: 
-        function(exports, require, module, __filename, __dirname) {
-          exports.spawn = function() {};
-          exports.exec = function() {};
-
-        },
-
-        "a8aae685be6eeb8ec844ae9c4f5fd189": // from: 
-        function(exports, require, module, __filename, __dirname) {
-          // TODO  
         },
 
         "b499eb63a89b9e6fb99ef1209a65ace6": // from: 
@@ -2926,319 +2457,6 @@ Algorithm by Peter John Acklam (pjacklam@online.no, http://home.online.no/~pjack
           };
 
           module.exports = fs;
-        },
-
-        "5d6e2c2d895132330e91af96bc1409c7": // from: 
-        function(exports, require, module, __filename, __dirname) {
-          //
-          // Adapted from http-browserify
-          //
-
-
-          var http = module.exports;
-          var EventEmitter = require('events').EventEmitter;
-          var Request;
-
-          http.request = function(params, cb) {
-            if (!params) params = {};
-            if (!params.host) params.host = window.location.host.split(':')[0];
-            if (!params.port) params.port = window.location.port;
-
-            var req = new Request(new xhrHttp, params);
-            if (cb) req.on('response', cb);
-            return req;
-          };
-
-          http.get = function(params, cb) {
-            params.method = 'GET';
-            var req = http.request(params, cb);
-            req.end();
-            return req;
-          };
-
-          http.Agent = function() {};
-          http.Agent.defaultMaxSockets = 4;
-
-          var xhrHttp = (function() {
-            if (typeof window === 'undefined') {
-              throw new Error('no window object present');
-            } else if (window.XMLHttpRequest) {
-              return window.XMLHttpRequest;
-            } else if (window.ActiveXObject) {
-              var axs = ['Msxml2.XMLHTTP.6.0', 'Msxml2.XMLHTTP.3.0', 'Microsoft.XMLHTTP'];
-              for (var i = 0; i < axs.length; i++) {
-                try {
-                  var ax = new(window.ActiveXObject)(axs[i]);
-                  return function() {
-                    if (ax) {
-                      var ax_ = ax;
-                      ax = null;
-                      return ax_;
-                    } else {
-                      return new(window.ActiveXObject)(axs[i]);
-                    }
-                  };
-                } catch (e) {}
-              }
-              throw new Error('ajax not supported in this browser')
-            } else {
-              throw new Error('ajax not supported in this browser');
-            }
-          })();
-
-
-          Request = (function() {
-            var EventEmitter = require('events').EventEmitter;
-            var Response;
-            var concatStream;
-
-            var Request = function(xhr, params) {
-              var self = this;
-              self.xhr = xhr;
-              self.body = concatStream()
-
-              var uri = params.host + ':' + params.port + (params.path || '/');
-
-              xhr.open(
-              params.method || 'GET', (params.scheme || 'http') + '://' + uri,
-              true);
-
-              if (params.headers) {
-                Object.keys(params.headers).forEach(function(key) {
-                  if (!self.isSafeRequestHeader(key)) return;
-                  var value = params.headers[key];
-                  if (Array.isArray(value)) {
-                    value.forEach(function(v) {
-                      xhr.setRequestHeader(key, v);
-                    });
-                  } else xhr.setRequestHeader(key, value)
-                });
-              }
-
-              var res = new Response(xhr);
-              res.on('ready', function() {
-                self.emit('response', res);
-              });
-
-              xhr.onreadystatechange = function() {
-                res.handle(xhr);
-              };
-            };
-
-            Request.prototype = new EventEmitter;
-
-            Request.prototype.setHeader = function(key, value) {
-              if ((Array.isArray && Array.isArray(value)) || value instanceof Array) {
-                for (var i = 0; i < value.length; i++) {
-                  this.xhr.setRequestHeader(key, value[i]);
-                }
-              } else {
-                this.xhr.setRequestHeader(key, value);
-              }
-            };
-
-            Request.prototype.write = function(s) {
-              this.body.write(s);
-            };
-
-            Request.prototype.end = function(s) {
-              if (s !== undefined) this.body.write(s);
-              this.body.end()
-              this.xhr.send(this.body.getBody());
-            };
-
-            // Taken from http://dxr.mozilla.org/mozilla/mozilla-central/content/base/src/nsXMLHttpRequest.cpp.html
-            Request.unsafeHeaders = ["accept-charset", "accept-encoding", "access-control-request-headers", "access-control-request-method", "connection", "content-length", "cookie", "cookie2", "content-transfer-encoding", "date", "expect", "host", "keep-alive", "origin", "referer", "te", "trailer", "transfer-encoding", "upgrade", "user-agent", "via"];
-
-            Request.prototype.isSafeRequestHeader = function(headerName) {
-              if (!headerName) return false;
-              return (Request.unsafeHeaders.indexOf(headerName.toLowerCase()) === -1)
-            };
-
-            Response = (function() {
-
-              var EventEmitter = require('events').EventEmitter;
-
-              var Response = function(xhr) {
-                this.xhr = xhr;
-                this.offset = 0;
-              };
-
-              Response.prototype = new EventEmitter;
-
-              var capable = {
-                streaming: true,
-                status2: true
-              };
-
-              function parseHeaders(xhr) {
-                var lines = xhr.getAllResponseHeaders().split(/\r?\n/);
-                var headers = {};
-                for (var i = 0; i < lines.length; i++) {
-                  var line = lines[i];
-                  if (line === '') continue;
-
-                  var m = line.match(/^([^:]+):\s*(.*)/);
-                  if (m) {
-                    var key = m[1].toLowerCase(),
-                      value = m[2];
-
-                    if (headers[key] !== undefined) {
-                      if ((Array.isArray && Array.isArray(headers[key])) || headers[key] instanceof Array) {
-                        headers[key].push(value);
-                      } else {
-                        headers[key] = [headers[key], value];
-                      }
-                    } else {
-                      headers[key] = value;
-                    }
-                  } else {
-                    headers[line] = true;
-                  }
-                }
-                return headers;
-              }
-
-              Response.prototype.getResponse = function(xhr) {
-                var respType = xhr.responseType.toLowerCase();
-                if (respType === "blob") return xhr.responseBlob;
-                if (respType === "arraybuffer") return xhr.response;
-                return xhr.responseText;
-              }
-
-              Response.prototype.getHeader = function(key) {
-                return this.headers[key.toLowerCase()] || this.xhr.getResponseHeader(key);
-              };
-
-              Response.prototype.handle = function(xhr) {
-                if (xhr.readyState === 2 && capable.status2) {
-                  try {
-                    this.statusCode = xhr.status;
-                    this.headers = parseHeaders(xhr);
-                  } catch (err) {
-                    capable.status2 = false;
-                  }
-
-                  if (capable.status2) {
-                    this.emit('ready');
-                  }
-                } else if (capable.streaming && xhr.readyState === 3) {
-                  try {
-                    if (!this.statusCode) {
-                      this.statusCode = xhr.status;
-                      this.headers = parseHeaders(xhr);
-                      this.emit('ready');
-                    }
-                  } catch (err) {}
-
-                  try {
-                    this.write(xhr);
-                  } catch (err) {
-                    capable.streaming = false;
-                  }
-                } else if (xhr.readyState === 4) {
-                  if (!this.statusCode) {
-                    this.statusCode = xhr.status;
-                    this.emit('ready');
-                  }
-                  this.write(xhr);
-
-                  if (xhr.error) {
-                    this.emit('error', this.getResponse(xhr));
-                  } else this.emit('end');
-                }
-              };
-
-              Response.prototype.write = function(xhr) {
-                var respBody = this.getResponse(xhr);
-                if (respBody.toString().match(/ArrayBuffer/)) {
-                  this.emit('data', new Uint8Array(respBody, this.offset));
-                  this.offset = respBody.byteLength;
-                  return;
-                }
-                if (respBody.length > this.offset) {
-                  this.emit('data', respBody.slice(this.offset));
-                  this.offset = respBody.length;
-                }
-              };
-
-              return Response;
-
-            })();
-
-            concatStream = (function() {
-
-              var stream = require('stream')
-              var util = require('util')
-
-                function ConcatStream(cb) {
-                  stream.Stream.call(this)
-                  this.writable = true
-                  if (cb) this.cb = cb
-                  this.body = []
-                  this.on('error', function(err) {
-                    if (this.cb) this.cb(err)
-                  })
-                }
-
-              util.inherits(ConcatStream, stream.Stream)
-
-              ConcatStream.prototype.write = function(chunk) {
-                this.body.push(chunk)
-              }
-
-              ConcatStream.prototype.destroy = function() {}
-
-              ConcatStream.prototype.arrayConcat = function(arrs) {
-                if (arrs.length === 0) return []
-                if (arrs.length === 1) return arrs[0]
-                return arrs.reduce(function(a, b) {
-                  return a.concat(b)
-                })
-              }
-
-              ConcatStream.prototype.isArray = function(arr) {
-                var isArray = Array.isArray(arr)
-                var isTypedArray = arr.toString().match(/Array/)
-                return isArray || isTypedArray
-              }
-
-              ConcatStream.prototype.getBody = function() {
-                if (this.body.length === 0) return
-                if (typeof(this.body[0]) === "string") return this.body.join('')
-                if (this.isArray(this.body[0])) return this.arrayConcat(this.body)
-                if (typeof(Buffer) !== "undefined" && Buffer.isBuffer(this.body[0])) {
-                  return Buffer.concat(this.body)
-                }
-                return this.body
-              }
-
-              ConcatStream.prototype.end = function() {
-                if (this.cb) this.cb(false, this.getBody())
-              }
-
-              var exports = function(cb) {
-                return new ConcatStream(cb)
-              }
-
-              exports.ConcatStream = ConcatStream
-
-              return exports;
-
-            })();
-
-            return Request;
-
-          })();
-
-
-
-        },
-
-        "8f99cc2b75044ae1f45cefc6948e42b3": // from: 
-        function(exports, require, module, __filename, __dirname) {
-          module.exports = require('http');
-
         },
 
         "223f09f17e4aff9f2d05493c688f7934": // from: 
@@ -4206,394 +3424,6 @@ Algorithm by Peter John Acklam (pjacklam@online.no, http://home.online.no/~pjack
               return path;
             };
           }
-
-        },
-
-        "54c69a095dc8e4a9173bd8284c4e8ad7": // from: 
-        function(exports, require, module, __filename, __dirname) {
-          var isArray = typeof Array.isArray === 'function' ? Array.isArray : function(xs) {
-              return Object.prototype.toString.call(xs) === '[object Array]'
-            };
-
-          var objectKeys = Object.keys || function objectKeys(object) {
-              if (object !== Object(object)) throw new TypeError('Invalid object');
-              var keys = [];
-              for (var key in object) if (object.hasOwnProperty(key)) keys[keys.length] = key;
-              return keys;
-            }
-
-
-            /*!
-             * querystring
-             * Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>
-             * MIT Licensed
-             */
-
-            /**
-             * Library version.
-             */
-
-            exports.version = '0.3.1';
-
-          /**
-           * Object#toString() ref for stringify().
-           */
-
-          var toString = Object.prototype.toString;
-
-          /**
-           * Cache non-integer test regexp.
-           */
-
-          var notint = /[^0-9]/;
-
-          /**
-           * Parse the given query `str`, returning an object.
-           *
-           * @param {String} str
-           * @return {Object}
-           * @api public
-           */
-
-          exports.parse = function(str) {
-            if (null == str || '' == str) return {};
-
-            function promote(parent, key) {
-              if (parent[key].length == 0) return parent[key] = {};
-              var t = {};
-              for (var i in parent[key]) t[i] = parent[key][i];
-              parent[key] = t;
-              return t;
-            }
-
-            return String(str).split('&').reduce(function(ret, pair) {
-              try {
-                pair = decodeURIComponent(pair.replace(/\+/g, ' '));
-              } catch (e) {
-                // ignore
-              }
-
-              var eql = pair.indexOf('='),
-                brace = lastBraceInKey(pair),
-                key = pair.substr(0, brace || eql),
-                val = pair.substr(brace || eql, pair.length),
-                val = val.substr(val.indexOf('=') + 1, val.length),
-                parent = ret;
-
-              // ?foo
-              if ('' == key) key = pair, val = '';
-
-              // nested
-              if (~key.indexOf(']')) {
-                var parts = key.split('['),
-                  len = parts.length,
-                  last = len - 1;
-
-                function parse(parts, parent, key) {
-                  var part = parts.shift();
-
-                  // end
-                  if (!part) {
-                    if (isArray(parent[key])) {
-                      parent[key].push(val);
-                    } else if ('object' == typeof parent[key]) {
-                      parent[key] = val;
-                    } else if ('undefined' == typeof parent[key]) {
-                      parent[key] = val;
-                    } else {
-                      parent[key] = [parent[key], val];
-                    }
-                    // array
-                  } else {
-                    obj = parent[key] = parent[key] || [];
-                    if (']' == part) {
-                      if (isArray(obj)) {
-                        if ('' != val) obj.push(val);
-                      } else if ('object' == typeof obj) {
-                        obj[objectKeys(obj).length] = val;
-                      } else {
-                        obj = parent[key] = [parent[key], val];
-                      }
-                      // prop
-                    } else if (~part.indexOf(']')) {
-                      part = part.substr(0, part.length - 1);
-                      if (notint.test(part) && isArray(obj)) obj = promote(parent, key);
-                      parse(parts, obj, part);
-                      // key
-                    } else {
-                      if (notint.test(part) && isArray(obj)) obj = promote(parent, key);
-                      parse(parts, obj, part);
-                    }
-                  }
-                }
-
-                parse(parts, parent, 'base');
-                // optimize
-              } else {
-                if (notint.test(key) && isArray(parent.base)) {
-                  var t = {};
-                  for (var k in parent.base) t[k] = parent.base[k];
-                  parent.base = t;
-                }
-                set(parent.base, key, val);
-              }
-
-              return ret;
-            }, {
-              base: {}
-            }).base;
-          };
-
-          /**
-           * Turn the given `obj` into a query string
-           *
-           * @param {Object} obj
-           * @return {String}
-           * @api public
-           */
-
-          var stringify = exports.stringify = function(obj, prefix) {
-            if (isArray(obj)) {
-              return stringifyArray(obj, prefix);
-            } else if ('[object Object]' == toString.call(obj)) {
-              return stringifyObject(obj, prefix);
-            } else if ('string' == typeof obj) {
-              return stringifyString(obj, prefix);
-            } else {
-              return prefix;
-            }
-          };
-
-          /**
-           * Stringify the given `str`.
-           *
-           * @param {String} str
-           * @param {String} prefix
-           * @return {String}
-           * @api private
-           */
-
-          function stringifyString(str, prefix) {
-            if (!prefix) throw new TypeError('stringify expects an object');
-            return prefix + '=' + encodeURIComponent(str);
-          }
-
-          /**
-           * Stringify the given `arr`.
-           *
-           * @param {Array} arr
-           * @param {String} prefix
-           * @return {String}
-           * @api private
-           */
-
-          function stringifyArray(arr, prefix) {
-            var ret = [];
-            if (!prefix) throw new TypeError('stringify expects an object');
-            for (var i = 0; i < arr.length; i++) {
-              ret.push(stringify(arr[i], prefix + '[]'));
-            }
-            return ret.join('&');
-          }
-
-          /**
-           * Stringify the given `obj`.
-           *
-           * @param {Object} obj
-           * @param {String} prefix
-           * @return {String}
-           * @api private
-           */
-
-          function stringifyObject(obj, prefix) {
-            var ret = [],
-              keys = objectKeys(obj),
-              key;
-            for (var i = 0, len = keys.length; i < len; ++i) {
-              key = keys[i];
-              ret.push(stringify(obj[key], prefix ? prefix + '[' + encodeURIComponent(key) + ']' : encodeURIComponent(key)));
-            }
-            return ret.join('&');
-          }
-
-          /**
-           * Set `obj`'s `key` to `val` respecting
-           * the weird and wonderful syntax of a qs,
-           * where "foo=bar&foo=baz" becomes an array.
-           *
-           * @param {Object} obj
-           * @param {String} key
-           * @param {String} val
-           * @api private
-           */
-
-          function set(obj, key, val) {
-            var v = obj[key];
-            if (undefined === v) {
-              obj[key] = val;
-            } else if (isArray(v)) {
-              v.push(val);
-            } else {
-              obj[key] = [v, val];
-            }
-          }
-
-          /**
-           * Locate last brace in `str` within the key.
-           *
-           * @param {String} str
-           * @return {Number}
-           * @api private
-           */
-
-          function lastBraceInKey(str) {
-            var len = str.length,
-              brace, c;
-            for (var i = 0; i < len; ++i) {
-              c = str[i];
-              if (']' == c) brace = false;
-              if ('[' == c) brace = true;
-              if ('=' == c && !brace) return i;
-            }
-          }
-
-        },
-
-        "f0d5935f094eb3d9fb70c67795bd4caf": // from: 
-        function(exports, require, module, __filename, __dirname) {
-          var events = require('events');
-          var util = require('util');
-
-          function Stream() {
-            events.EventEmitter.call(this);
-          }
-          util.inherits(Stream, events.EventEmitter);
-          module.exports = Stream;
-          // Backwards-compat with node 0.4.x
-          Stream.Stream = Stream;
-
-          Stream.prototype.pipe = function(dest, options) {
-            var source = this;
-
-            function ondata(chunk) {
-              if (dest.writable) {
-                if (false === dest.write(chunk) && source.pause) {
-                  source.pause();
-                }
-              }
-            }
-
-            source.on('data', ondata);
-
-            function ondrain() {
-              if (source.readable && source.resume) {
-                source.resume();
-              }
-            }
-
-            dest.on('drain', ondrain);
-
-            // If the 'end' option is not supplied, dest.end() will be called when
-            // source gets the 'end' or 'close' events.  Only dest.end() once, and
-            // only when all sources have ended.
-            if (!dest._isStdio && (!options || options.end !== false)) {
-              dest._pipeCount = dest._pipeCount || 0;
-              dest._pipeCount++;
-
-              source.on('end', onend);
-              source.on('close', onclose);
-            }
-
-            var didOnEnd = false;
-
-            function onend() {
-              if (didOnEnd) return;
-              didOnEnd = true;
-
-              dest._pipeCount--;
-
-              // remove the listeners
-              cleanup();
-
-              if (dest._pipeCount > 0) {
-                // waiting for other incoming streams to end.
-                return;
-              }
-
-              dest.end();
-            }
-
-
-            function onclose() {
-              if (didOnEnd) return;
-              didOnEnd = true;
-
-              dest._pipeCount--;
-
-              // remove the listeners
-              cleanup();
-
-              if (dest._pipeCount > 0) {
-                // waiting for other incoming streams to end.
-                return;
-              }
-
-              dest.destroy();
-            }
-
-            // don't leave dangling pipes when there are errors.
-            function onerror(er) {
-              cleanup();
-              if (this.listeners('error').length === 0) {
-                throw er; // Unhandled stream error in pipe.
-              }
-            }
-
-            source.on('error', onerror);
-            dest.on('error', onerror);
-
-            // remove all the event listeners that were added.
-            function cleanup() {
-              source.removeListener('data', ondata);
-              dest.removeListener('drain', ondrain);
-
-              source.removeListener('end', onend);
-              source.removeListener('close', onclose);
-
-              source.removeListener('error', onerror);
-              dest.removeListener('error', onerror);
-
-              source.removeListener('end', cleanup);
-              source.removeListener('close', cleanup);
-
-              dest.removeListener('end', cleanup);
-              dest.removeListener('close', cleanup);
-            }
-
-            source.on('end', cleanup);
-            source.on('close', cleanup);
-
-            dest.on('end', cleanup);
-            dest.on('close', cleanup);
-
-            dest.emit('pipe', source);
-
-            // Allow for unix-like usage: A.pipe(B).pipe(C)
-            return dest;
-          };
-
-        },
-
-        "4e0d787840f05b0c47b10d63b6f3898f": // from: 
-        function(exports, require, module, __filename, __dirname) {
-          module.exports = require('util');
-
-        },
-
-        "12124e45d125f26e20242c0e81a80f19": // from: 
-        function(exports, require, module, __filename, __dirname) {
-          exports.isatty = function() {};
-          exports.setRawMode = function() {};
 
         },
 
