@@ -55,6 +55,12 @@ module.exports = class Context
           action: =>
           next: "CHILDLESS"
 
+        # This occurs when, e.g., a TestContext has an error in its top level function.
+        completion:
+          action: =>
+            @notify_parent()
+          next: "COMPLETE"
+
         end_of_block:
          action:  =>
             @notify_parent()
@@ -117,6 +123,9 @@ module.exports = class Context
         reset:
           action: =>
           next: "START"
+        end_of_block:
+          action: =>
+          next: "COMPLETE"
 
   state: ->
     @fsm.state
