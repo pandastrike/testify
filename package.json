@@ -1,18 +1,16 @@
 {
   "name": "testify",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "simple asynchronous testing using assertions of your choice",
   "main": "src/testify.coffee",
   "bin": "bin/testify",
   "files": [
     "src",
     "bin/",
-    "README.md",
-    "statistics.js"
+    "README.md"
   ],
   "dependencies": {
     "optimist": "0.3.5",
-    "microtime": "0.3.3",
     "colors": "0.6.x"
   },
   "repository": "git@github.com:automatthew/testify.git",

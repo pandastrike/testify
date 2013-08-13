@@ -29,7 +29,13 @@ module.exports = class TestContext extends Context
 
   event: (args...) ->
     try
+      current = @fsm.state
       super(args...)
+      #console.log
+        #name: @name
+        #current: current
+        #event: args[0]
+        #next: @fsm.state
     catch error
       if error.state == "COMPLETE" && error.event == "async_child"
         my_error = new Error "Bad Testify usage: Can't create async test after the parent context completed."
