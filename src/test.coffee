@@ -15,14 +15,24 @@ module.exports = class TestContext extends Context
     TestContext.reporter.add_suite(@)
     @_run()
 
+  _run: (args...) ->
+    @work(@)
+    if @type == "sync" || @children.length > 0
+      @event "end_of_block"
+    else
+      @event "childless"
+
   _run: ->
     @fsm.emitter.once "COMPLETE", =>
       clearTimeout(@timeout_id) if @timeout_id
       @timeout_id = undefined
     try
-      super()
-      if @type == "sync"
+      @work(@) unless @failed
+      if @type == "sync" || @children.length > 0
+        @event "end_of_block"
         @status("pass", ".")
+      else
+        @event "childless" unless @failed
     catch error
       @fail(error)
       @event("end_of_block")
@@ -38,9 +48,13 @@ module.exports = class TestContext extends Context
         #next: @fsm.state
     catch error
       if error.state == "COMPLETE" && error.event == "async_child"
-        my_error = new Error "Bad Testify usage: Can't create async test after the parent context completed."
+        my_error = new Error "Asynchronous test created after parent had completed"
         my_error.stack = error.stack.split("\n").slice(5).join("\n")
-        @fail(my_error)
+        args[1].fail my_error
+      else if error.state == "COMPLETE" && error.event == "sync_child"
+        my_error = new Error "Synchronous test created after parent had completed"
+        my_error.stack = error.stack.split("\n").slice(5).join("\n")
+        args[1].fail my_error
       else
         throw error
 
