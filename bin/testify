@@ -1,26 +1,25 @@
 #!/usr/bin/env coffee
 
-#[interpreter, script, config_file] = process.argv
+[interpreter, script, args...] = process.argv
 
-optimist = require("optimist")
-  #.demand("config")
-  #.alias("config", "c")
-  #.describe("config", "Path to JSON config")
+usage = "Usage: testify [--color|-c] <path>"
 
-  .boolean("color")
-  .alias("color", "c")
-  .describe("color", "Colorize output")
-  .default("color", false)
-
-
-
-argv = optimist.argv
-
-Testify = require("../src/testify")
-Testify.options.color = argv.color
-
-[test_file] = argv._
-if test_file
+if args.length == 1
+  [test_file] = args
+  Testify = require("../src/testify")
+  Testify.options.color = false
   path = require("path")
   require (path.resolve(test_file))
+else if args.length == 2
+  [flag, test_file] = args
+  if flag == "-c" || flag == "--color"
+    Testify = require("../src/testify")
+    Testify.options.color = true
+    path = require("path")
+    require (path.resolve(test_file))
+  else
+    console.log usage
+else
+  console.log usage
+
 

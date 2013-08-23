@@ -20,7 +20,7 @@ Testify =
 
   test: (name, fn) ->
     TestContext.options = Testify.options
-    TestContext.reporter = Testify.reporter || new Testify.ConsoleReporter()
+    TestContext.reporter = Testify.reporter || new Testify.ConsoleReporter(Testify.options)
     suite = new TestContext(name, fn)
     Testify.count++
     suite.fsm.emitter.once "COMPLETE", ->

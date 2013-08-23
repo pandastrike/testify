@@ -1,7 +1,7 @@
 
 class ConsoleReporter
 
-  constructor: ->
+  constructor: ({@color})->
     #@suites = []
 
   add_suite: (suite) ->
@@ -89,7 +89,7 @@ class ConsoleReporter
         console.log space + where.slice(7)
 
   colorize: (type, string) ->
-    if color = @color_map[type]
+    if @color && color = @color_map[type]
       string[color]
     else
       string
