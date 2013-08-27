@@ -10,6 +10,7 @@
     "README.md"
   ],
   "dependencies": {
+    "coffee-script": "0.4.x",
     "colors": "0.6.x"
   },
   "repository": "git@github.com:automatthew/testify.git",
