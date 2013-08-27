@@ -34,6 +34,14 @@ Output:
 
 ```.coffee
 
+some_async_call = (callback) ->
+  process.nextTick ->
+    callback null, "pie"
+
+another_async_call = (input, callback) ->
+  process.nextTick ->
+    callback null, ["bacon", "cheese", "pie"]
+
 Testify.test "a suite of tests", (context) ->
 
   # When you need to test the results of an asynchronous function,
@@ -65,7 +73,7 @@ Testify.test "a suite of tests", (context) ->
 
       context.test "shortcut for failing an async test", (context) ->
         process.nextTick ->
-          context.fail()
+          context.fail("I just couldn't go on")
 
 ```
 
