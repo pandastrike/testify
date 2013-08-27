@@ -28,6 +28,7 @@ Testify =
       if Testify.count == 0
         Testify.emitter.emit "done"
     suite.run()
+    suite
 
 
 module.exports = Testify

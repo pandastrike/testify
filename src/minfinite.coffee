@@ -1,4 +1,4 @@
-EventEmitter = require("events").EventEmitter
+{EventEmitter} = require("events")
 
 module.exports = class FSM
 
@@ -44,5 +44,4 @@ module.exports = class FSM
       if @state != current_state
         @emitter.emit @state
     
-
 

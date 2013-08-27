@@ -4,6 +4,9 @@ FSM = require "./minfinite"
 
 module.exports = class Context
 
+  once: (args...) ->
+    @emitter.once(args...)
+
   # Arity of a function can be determined using a function's `length` property
   # For the purposes of this library, a `work` function which takes no args
   # represents synchronous work. When the supplied function takes an argument,
@@ -42,6 +45,9 @@ module.exports = class Context
     #
     # The return value of each event function is used to select the next state.
     @fsm = new FSM()
+    @fsm.emitter.once "COMPLETE", =>
+      @emitter.emit "done"
+
     @fsm.define
       START:
         sync_child:
