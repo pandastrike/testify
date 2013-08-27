@@ -10,7 +10,7 @@ Written (and most easily used) in CoffeeScript.
 
 Output:
 
-![basic usage output](https://github.com/automatthew/testify/doc/basic_usage.png)
+![basic usage output](https://raw.github.com/automatthew/testify/documentation/doc/basic_usage.png)
 
 
 ## Asynchronous usage
