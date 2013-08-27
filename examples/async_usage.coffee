@@ -1,38 +1,5 @@
-# Testify
-
-Simple synchronous and asynchronous testing, using the assertions of your choice.
-
-Written (and most easily used) in CoffeeScript.
-
-## Basic usage
-
-```.coffee
-
 Testify = require "../src/testify"
 assert = require "assert"
-
-Testify.test "straightforward synchronous testing", (context) ->
-
-  context.test "arithmetic", ->
-    assert.equal (2 + 2), 4
-
-  context.test "strings", ->
-    assert.equal "foo".toUpperCase(), "FOO"
-
-  context.test "error handling", ->
-    error = new Error "I failed."
-    assert.ifError(error)
-
-```
-
-Output:
-
-![basic usage output](https://github.com/automatthew/testify/doc/basic_usage.png)
-
-
-## Asynchronous usage
-
-```.coffee
 
 Testify.test "a suite of tests", (context) ->
 
@@ -66,23 +33,4 @@ Testify.test "a suite of tests", (context) ->
       context.test "shortcut for failing an async test", (context) ->
         process.nextTick ->
           context.fail()
-
-```
-
-
-Run your test files with the `coffee` executable, or by requiring them.
-
-    coffee path/to/test.coffee
-
-## Examples
-
-[Testing the Shred HTTP client](https://github.com/automatthew/shred/blob/master/test/shred_test.coffee)
-
-You can also use test nesting with entirely synchronous work, as a way to structure the
-test results:
-
-[Shred's header processing test](https://github.com/automatthew/shred/blob/master/test/headers_test.coffee)
-
-
-
 

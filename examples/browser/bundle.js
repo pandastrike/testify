@@ -19,7 +19,7 @@ var global = (function() {
             "ino": 4747837,
             "size": 3029,
             "blocks": 8,
-            "atime": "2013-05-19T22:23:43.000Z",
+            "atime": "2013-08-27T18:33:47.000Z",
             "mtime": "2013-04-21T17:01:51.000Z",
             "ctime": "2013-04-21T17:01:51.000Z",
             "type": "file"
@@ -38,9 +38,9 @@ var global = (function() {
             "ino": 4717675,
             "size": 340,
             "blocks": 0,
-            "atime": "2013-05-19T22:23:16.000Z",
-            "mtime": "2013-05-19T22:19:51.000Z",
-            "ctime": "2013-05-19T22:19:51.000Z",
+            "atime": "2013-08-27T18:29:06.000Z",
+            "mtime": "2013-08-27T18:29:05.000Z",
+            "ctime": "2013-08-27T18:29:05.000Z",
             "type": "directory"
           },
           "testify": {
@@ -55,9 +55,9 @@ var global = (function() {
               "ino": 4717675,
               "size": 340,
               "blocks": 0,
-              "atime": "2013-05-19T22:23:16.000Z",
-              "mtime": "2013-05-19T22:19:51.000Z",
-              "ctime": "2013-05-19T22:19:51.000Z",
+              "atime": "2013-08-27T18:29:06.000Z",
+              "mtime": "2013-08-27T18:29:05.000Z",
+              "ctime": "2013-08-27T18:29:05.000Z",
               "type": "directory"
             },
             "node_modules": {
@@ -72,9 +72,9 @@ var global = (function() {
                 "ino": 4717675,
                 "size": 340,
                 "blocks": 0,
-                "atime": "2013-05-19T22:23:16.000Z",
-                "mtime": "2013-05-19T22:19:51.000Z",
-                "ctime": "2013-05-19T22:19:51.000Z",
+                "atime": "2013-08-27T18:29:06.000Z",
+                "mtime": "2013-08-27T18:29:05.000Z",
+                "ctime": "2013-08-27T18:29:05.000Z",
                 "type": "directory"
               },
               "colors": {
@@ -89,9 +89,9 @@ var global = (function() {
                   "ino": 4717675,
                   "size": 340,
                   "blocks": 0,
-                  "atime": "2013-05-19T22:23:16.000Z",
-                  "mtime": "2013-05-19T22:19:51.000Z",
-                  "ctime": "2013-05-19T22:19:51.000Z",
+                  "atime": "2013-08-27T18:29:06.000Z",
+                  "mtime": "2013-08-27T18:29:05.000Z",
+                  "ctime": "2013-08-27T18:29:05.000Z",
                   "type": "directory"
                 },
                 "colors.js": {
@@ -106,7 +106,7 @@ var global = (function() {
                     "ino": 4748192,
                     "size": 7705,
                     "blocks": 16,
-                    "atime": "2013-05-19T22:23:43.000Z",
+                    "atime": "2013-08-27T18:33:47.000Z",
                     "mtime": "2011-12-09T12:35:20.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -125,7 +125,7 @@ var global = (function() {
                     "ino": 4748196,
                     "size": 2039,
                     "blocks": 8,
-                    "atime": "2013-05-19T22:23:43.000Z",
+                    "atime": "2013-08-27T18:33:47.000Z",
                     "mtime": "2011-12-09T12:35:20.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -144,7 +144,7 @@ var global = (function() {
                     "ino": 4748189,
                     "size": 1793,
                     "blocks": 8,
-                    "atime": "2013-05-19T22:23:43.000Z",
+                    "atime": "2013-08-27T18:33:47.000Z",
                     "mtime": "2013-04-21T17:16:52.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -163,7 +163,7 @@ var global = (function() {
                     "ino": 4748198,
                     "size": 1958,
                     "blocks": 8,
-                    "atime": "2013-05-19T22:23:43.000Z",
+                    "atime": "2013-08-27T18:33:47.000Z",
                     "mtime": "2011-12-09T12:35:20.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -183,9 +183,9 @@ var global = (function() {
                   "ino": 4717675,
                   "size": 340,
                   "blocks": 0,
-                  "atime": "2013-05-19T22:23:16.000Z",
-                  "mtime": "2013-05-19T22:19:51.000Z",
-                  "ctime": "2013-05-19T22:19:51.000Z",
+                  "atime": "2013-08-27T18:29:06.000Z",
+                  "mtime": "2013-08-27T18:29:05.000Z",
+                  "ctime": "2013-08-27T18:29:05.000Z",
                   "type": "directory"
                 },
                 "minfinite.js": {
@@ -200,7 +200,7 @@ var global = (function() {
                     "ino": 4748208,
                     "size": 2161,
                     "blocks": 8,
-                    "atime": "2013-05-19T22:23:43.000Z",
+                    "atime": "2013-08-27T18:33:47.000Z",
                     "mtime": "2013-03-04T18:11:25.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -219,7 +219,7 @@ var global = (function() {
                     "ino": 4748204,
                     "size": 581,
                     "blocks": 8,
-                    "atime": "2013-05-19T22:23:43.000Z",
+                    "atime": "2013-08-27T18:33:47.000Z",
                     "mtime": "2013-04-21T17:16:52.000Z",
                     "ctime": "2013-04-21T17:16:52.000Z",
                     "type": "file"
@@ -240,7 +240,7 @@ var global = (function() {
                 "ino": 4748158,
                 "size": 2726,
                 "blocks": 8,
-                "atime": "2013-05-19T22:23:43.000Z",
+                "atime": "2013-08-27T18:33:47.000Z",
                 "mtime": "2013-04-21T17:16:51.000Z",
                 "ctime": "2013-04-21T17:16:51.000Z",
                 "type": "file"
@@ -259,9 +259,9 @@ var global = (function() {
                 "ino": 4717675,
                 "size": 340,
                 "blocks": 0,
-                "atime": "2013-05-19T22:23:16.000Z",
-                "mtime": "2013-05-19T22:19:51.000Z",
-                "ctime": "2013-05-19T22:19:51.000Z",
+                "atime": "2013-08-27T18:29:06.000Z",
+                "mtime": "2013-08-27T18:29:05.000Z",
+                "ctime": "2013-08-27T18:29:05.000Z",
                 "type": "directory"
               },
               "context.coffee": {
@@ -276,7 +276,7 @@ var global = (function() {
                   "ino": 4748165,
                   "size": 4331,
                   "blocks": 16,
-                  "atime": "2013-05-19T22:23:43.000Z",
+                  "atime": "2013-08-27T18:33:47.000Z",
                   "mtime": "2013-04-20T16:46:14.000Z",
                   "ctime": "2013-04-21T17:16:51.000Z",
                   "type": "file"
@@ -295,7 +295,7 @@ var global = (function() {
                   "ino": 4748166,
                   "size": 6394,
                   "blocks": 16,
-                  "atime": "2013-05-19T22:23:43.000Z",
+                  "atime": "2013-08-27T18:33:47.000Z",
                   "mtime": "2013-04-21T17:09:23.000Z",
                   "ctime": "2013-04-21T17:16:51.000Z",
                   "type": "file"
@@ -314,7 +314,7 @@ var global = (function() {
                   "ino": 4748167,
                   "size": 1584,
                   "blocks": 8,
-                  "atime": "2013-05-19T22:23:43.000Z",
+                  "atime": "2013-08-27T18:33:47.000Z",
                   "mtime": "2013-04-20T17:00:49.000Z",
                   "ctime": "2013-04-21T17:16:51.000Z",
                   "type": "file"
@@ -333,7 +333,7 @@ var global = (function() {
                   "ino": 4748168,
                   "size": 1906,
                   "blocks": 8,
-                  "atime": "2013-05-19T22:23:43.000Z",
+                  "atime": "2013-08-27T18:33:47.000Z",
                   "mtime": "2013-04-21T16:54:10.000Z",
                   "ctime": "2013-04-21T17:16:51.000Z",
                   "type": "file"
@@ -355,7 +355,7 @@ var global = (function() {
             "ino": 4718701,
             "size": 245,
             "blocks": 8,
-            "atime": "2013-05-19T22:23:44.000Z",
+            "atime": "2013-08-27T18:33:47.000Z",
             "mtime": "2013-04-19T18:38:38.000Z",
             "ctime": "2013-04-19T18:38:38.000Z",
             "type": "file"
@@ -379,7 +379,7 @@ var global = (function() {
         "4da661eb5390996e709a485de49a2fe3": "ewogICJuYW1lIjogInRlc3RpZnktYnJvd3NlciIsCiAgInZlcnNpb24iOiAiMC4xLjAiLAogICJkZXNjcmlwdGlvbiI6ICJUZXN0aWZ5IGluIHRoZSBicm93c2VyIiwKICAibWFpbiI6ICJhcHBsaWNhdGlvbi5jb2ZmZWUiLAogICJyZXBvc2l0b3J5IjogIiIsCiAgImF1dGhvciI6ICJNYXR0aGV3IEtpbmciLAogICJsaWNlbnNlIjogIk1JVCIsCiAgImRlcGVuZGVuY2llcyI6IHsKICAgICJ0ZXN0aWZ5IjogIjAuMi54IgogIH0KfQo=",
         "c4f9141dbd0d7a4e3dd3d1dc0a64c667": "YzRmOTE0MWRiZDBkN2E0ZTNkZDNkMWRjMGE2NGM2Njc=",
         "b499eb63a89b9e6fb99ef1209a65ace6": "YjQ5OWViNjNhODliOWU2ZmI5OWVmMTIwOWE2NWFjZTY=",
-        "4b089ad1310f754af3510dd2da9a1ff7": "NGIwODlhZDEzMTBmNzU0YWYzNTEwZGQyZGE5YTFmZjc=",
+        "e78828afe729e92d62b73d30c483888f": "ZTc4ODI4YWZlNzI5ZTkyZDYyYjczZDMwYzQ4Mzg4OGY=",
         "223f09f17e4aff9f2d05493c688f7934": "MjIzZjA5ZjE3ZTRhZmY5ZjJkMDU0OTNjNjg4Zjc5MzQ=",
         "7b51c3f0555ccb0c0f1fcd91d389ea1a": "N2I1MWMzZjA1NTVjY2IwYzBmMWZjZDkxZDM4OWVhMWE=",
         "d0c9d6cc2490c964b789d43ae4803b7b": "ZDBjOWQ2Y2MyNDkwYzk2NGI3ODlkNDNhZTQ4MDNiN2I=",
@@ -388,7 +388,7 @@ var global = (function() {
       native_modules: {
         "assert": "c4f9141dbd0d7a4e3dd3d1dc0a64c667",
         "events": "b499eb63a89b9e6fb99ef1209a65ace6",
-        "fs": "4b089ad1310f754af3510dd2da9a1ff7",
+        "fs": "e78828afe729e92d62b73d30c483888f",
         "module": "223f09f17e4aff9f2d05493c688f7934",
         "path": "7b51c3f0555ccb0c0f1fcd91d389ea1a",
         "url": "d0c9d6cc2490c964b789d43ae4803b7b",
@@ -2282,7 +2282,7 @@ THE SOFTWARE.
 
         },
 
-        "4b089ad1310f754af3510dd2da9a1ff7": // from: 
+        "e78828afe729e92d62b73d30c483888f": // from: 
         function(exports, require, module, __filename, __dirname) {
           var Stat, base64Decode, fs, getFile;
 
@@ -2330,6 +2330,23 @@ THE SOFTWARE.
               var file;
               file = getFile(path);
               return global.filesystem.read(file);
+            },
+            readdirSync: function(path) {
+              var file;
+              file = getFile(path);
+              if (file.__stat.type === "directory") {
+                var result = [];
+                for (var key in file) {
+                  // TODO: this is not a great convention, since it's hardly
+                  // impossible that a file might start with two underscores
+                  if (!(/^__/.test(key))) {
+                    result.push(key);
+                  }
+                }
+                return result;
+              } else {
+                throw "Not a directory: '" + path + "'";
+              }
             },
             statSync: function(path) {
               return new Stat(path);
@@ -4608,6 +4625,9 @@ var process = (function() {
     },
     cwd: function() {
       return "/";
+    },
+    nextTick: function(fn) {
+      setTimeout(fn, 0);
     }
   };
 })();

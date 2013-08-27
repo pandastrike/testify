@@ -12,7 +12,6 @@ Output:
 
 ![basic usage output](https://github.com/automatthew/testify/doc/basic_usage.png)
 
-```./basic_usage.out.txt```
 
 ## Asynchronous usage
 
