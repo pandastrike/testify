@@ -17,6 +17,9 @@ Output:
 
 ```../examples/async_usage.coffee#L4```
 
+Output:
+
+![async usage output](https://raw.github.com/automatthew/testify/documentation/doc/async_usage.png)
 
 Run your test files with the `coffee` executable, or by requiring them.
 

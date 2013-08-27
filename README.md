@@ -69,6 +69,9 @@ Testify.test "a suite of tests", (context) ->
 
 ```
 
+Output:
+
+![async usage output](https://raw.github.com/automatthew/testify/documentation/doc/async_usage.png)
 
 Run your test files with the `coffee` executable, or by requiring them.
 
