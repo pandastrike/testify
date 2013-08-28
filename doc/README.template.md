@@ -21,13 +21,14 @@ Output:
 
 ![async usage output](https://raw.github.com/automatthew/testify/documentation/doc/async_usage.png)
 
-Run your test files with the `coffee` executable, or by requiring them.
+Run your test files with the `coffee` executable, or by requiring them, or using `bin/testify [--color]`.
 
     coffee path/to/test.coffee
+    bin/testify -c path/to/test.coffee
 
 ## Examples
 
-[Testing the Shred HTTP client](https://github.com/automatthew/shred/blob/master/test/shred_test.coffee)
+[Tests for Shred, an HTTP client](https://github.com/automatthew/shred/blob/master/test/shred_test.coffee)
 
 You can also use test nesting with entirely synchronous work, as a way to structure the
 test results:

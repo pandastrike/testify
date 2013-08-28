@@ -2,7 +2,7 @@ require "starter/tasks/npm"
 require "starter/tasks/git"
 require "starter/tasks/markdown"
 
-task "build" => %w[bundle:example doc/chart.png]
+task "build" => %w[bundle:example doc/chart.png build:usage readme]
 
 task "bundle:example" do
   Dir.chdir "examples/browser" do
@@ -18,12 +18,9 @@ task "readme"  do |t|
   File.open("README.md", "w") do |f|
     f.puts process_doc("doc/README.template.md")
   end
-  #puts File.read("README.md")
 end
 
-#task "readme" do
-  #puts process_doc("doc/README.template.md")
-#end
+
 
 def process_doc(path)
   regex = %r{^```([^\s#]+)(#L(\S+))?\s*```$}
