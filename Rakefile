@@ -2,7 +2,7 @@ require "starter/tasks/npm"
 require "starter/tasks/git"
 require "starter/tasks/markdown"
 
-task "build" => %w[bundle:example doc/chart.png build:usage readme]
+task "build" => %w[ bundle:example doc/chart.png ]
 
 task "bundle:example" do
   Dir.chdir "examples/browser" do
@@ -14,12 +14,24 @@ file "doc/chart.png" => %w[src/context.coffee doc/graph.coffee] do
   sh "coffee doc/graph.coffee"
 end
 
-task "readme"  do |t|
+
+task "doc" => %w[ doc:readme doc:usage ]
+
+task "doc:readme"  do |t|
   File.open("README.md", "w") do |f|
     f.puts process_doc("doc/README.template.md")
   end
 end
 
+task "doc:usage" do
+  examples = FileList["examples/*.coffee"]
+  examples.each do |path|
+    base = File.basename(path).chomp(File.extname(path))
+    text_out = "#{base}.out.txt"
+    cap_command("bin/testify -c #{path}", "./doc/#{base}.png")
+    #system "bin/testify #{path} > ./doc/#{text_out}"
+  end
+end
 
 
 def process_doc(path)
@@ -66,19 +78,6 @@ def process_doc(path)
   out.join()
 end
 
-task "build:usage" do
-  examples = FileList["examples/*.coffee"]
-  examples.each do |path|
-    base = File.basename(path).chomp(File.extname(path))
-    text_out = "#{base}.out.txt"
-    cap_command("bin/testify -c #{path}", "./doc/#{base}.png")
-    #system "bin/testify #{path} > ./doc/#{text_out}"
-  end
-end
-
-task "smurf" do
-  cap_command "bin/testify -c examples/basic_usage.coffee", "./doc/basic_usage.png"
-end
 
 def cap_command(command, file)
   system "clear"
