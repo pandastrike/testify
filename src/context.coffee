@@ -4,6 +4,9 @@ FSM = require "./minfinite"
 
 module.exports = class Context
 
+  on: (args...) ->
+    @emitter.on(args...)
+
   once: (args...) ->
     @emitter.once(args...)
 
@@ -170,6 +173,7 @@ module.exports = class Context
     @children.push(child)
     @emitter.emit "child", child
     child._run()
+    child
 
 
   _run: (args...) ->
