@@ -2,7 +2,7 @@ require "starter/tasks/npm"
 require "starter/tasks/git"
 require "starter/tasks/markdown"
 
-task "build" => %w[ bundle:example doc/chart.png ]
+#task "build" => %w[ bundle:example doc/chart.png ]
 
 task "bundle:example" do
   Dir.chdir "examples/browser" do
