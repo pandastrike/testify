@@ -5,7 +5,6 @@ saneTimeout = (ms, fn) -> setTimeout(fn, ms)
 
 Testify.test "Usage problems", (context) ->
 
-
   context.test "sync after context completion", (context) ->
     context.test "complete me", ->
       assert.ok true

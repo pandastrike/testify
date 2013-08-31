@@ -28,7 +28,7 @@ task "doc:usage" do
   examples.each do |path|
     base = File.basename(path).chomp(File.extname(path))
     text_out = "#{base}.out.txt"
-    cap_command("bin/testify -c #{path}", "./doc/#{base}.png")
+    screen_cap("bin/testify -c #{path}", "./doc/#{base}.png")
     #system "bin/testify #{path} > ./doc/#{text_out}"
   end
 end
@@ -79,7 +79,7 @@ def process_doc(path)
 end
 
 
-def cap_command(command, file)
+def screen_cap(command, file)
   system "clear"
   puts "$ #{command}"
   system command
