@@ -41,20 +41,43 @@ class ConsoleReporter
       suite.name = "#{suite.name} (PASSED)"
 
     result = []
+    counts =
+      passed: 0
+      failed: 0
+      errored: 0
+      incomplete: 0
+
     @collect(suite, result)
 
     for test in result
       level = test.level
       if test.state() != "COMPLETE"
         @result "#{test.name} ( incomplete )", type: "incomplete", level: level
+        counts.incomplete++
       else if test.failed == false
         @result test.name, type: "pass", level: level
+        counts.passed++
       else if test.failed.constructor == String || test.failed.name == "AssertionError"
         @result "#{test.name} ( #{test.failed.toString()} )",
           type: "failure", level: level, stack: test.failed.stack
+        counts.failed++
       else
         @result "#{test.name} ( #{test.failed.toString()} )",
           type: "error", level: level, stack: test.failed.stack
+        counts.errored++
+
+    summary = [
+      @colorize "pass", "Passed: #{counts.passed}"
+    ]
+    if counts.failed > 0
+      summary.push @colorize "failure", "Failed: #{counts.failed}"
+    if counts.errored > 0
+      summary.push @colorize "error", "Errored: #{counts.errored}"
+    if counts.incomplete > 0
+      summary.push @colorize "incomplete", "Incomplete: #{counts.errored}"
+
+    console.log()
+    console.log summary.join("    ")
 
     if suite.failed && process.exit
       process.exit(1)
