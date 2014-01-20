@@ -49,7 +49,7 @@ module.exports = class Context
     # The return value of each event function is used to select the next state.
     @fsm = new FSM()
     @fsm.emitter.once "COMPLETE", =>
-      @emitter.emit "done"
+      @emitter.emit "done", @result
 
     @fsm.define
       START:
@@ -175,6 +175,7 @@ module.exports = class Context
     child._run()
     child
 
+  result: (@result) ->
 
   _run: (args...) ->
     @work(@)

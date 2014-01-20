@@ -93,7 +93,6 @@ module.exports = class TestContext extends Context
       @fail(message || "Timed out after #{milliseconds} milliseconds")
     @timeout_id = setTimeout(fn, milliseconds)
 
-
   propagate_failure: (error) ->
     @failed = error
     @parent?.propagate_failure("subtest failures")

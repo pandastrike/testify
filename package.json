@@ -1,6 +1,6 @@
 {
   "name": "testify",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "simple asynchronous testing using assertions of your choice",
   "main": "src/testify.coffee",
   "bin": "bin/testify",
