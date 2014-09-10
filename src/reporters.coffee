@@ -60,7 +60,8 @@ class ConsoleReporter
       else if test.failed.constructor == String || test.failed.name == "AssertionError"
         @result "#{test.name} ( #{test.failed.toString()} )",
           type: "failure", level: level, stack: test.failed.stack
-        counts.failed++
+        unless test.failed == "subtest failures"
+          counts.failed++
       else
         @result "#{test.name} ( #{test.failed.toString()} )",
           type: "error", level: level, stack: test.failed.stack
