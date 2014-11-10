@@ -2,16 +2,36 @@
 class ConsoleReporter
 
   constructor: ({@color})->
-    #@suites = []
+    @counts =
+      passed: 0
+      failed: 0
+      errored: 0
+      incomplete: 0
+    process.on "exit", =>
+      @summarize()
+      if @counts.failed > 0
+        process.exit(1)
+
+  summarize: ->
+    summary = [
+      @colorize "pass", "Passed: #{@counts.passed}"
+    ]
+    if @counts.failed > 0
+      summary.push @colorize "failure", "Failed: #{@counts.failed}"
+    if @counts.errored > 0
+      summary.push @colorize "error", "Errored: #{@counts.errored}"
+    if @counts.incomplete > 0
+      summary.push @colorize "incomplete", "Incomplete: #{@counts.errored}"
+
+    console.log()
+    console.log summary.join("    ")
 
   add_suite: (suite) ->
-    #@suites.push suite
     suite.emitter.on "child", (child) =>
       @hook(child)
 
     suite.fsm.emitter.on "COMPLETE", =>
       process.nextTick (=> @report_suite(suite))
-    process.on "exit", => @report_suite(suite)
 
   hook: (child) ->
     child.emitter.on "child", (context) =>
@@ -41,11 +61,6 @@ class ConsoleReporter
       suite.name = "#{suite.name} (PASSED)"
 
     result = []
-    counts =
-      passed: 0
-      failed: 0
-      errored: 0
-      incomplete: 0
 
     @collect(suite, result)
 
@@ -53,35 +68,22 @@ class ConsoleReporter
       level = test.level
       if test.state() != "COMPLETE"
         @result "#{test.name} ( incomplete )", type: "incomplete", level: level
-        counts.incomplete++
+        @counts.incomplete++
       else if test.failed == false
         @result test.name, type: "pass", level: level
-        counts.passed++
+        @counts.passed++
       else if test.failed.constructor == String || test.failed.name == "AssertionError"
         @result "#{test.name} ( #{test.failed.toString()} )",
           type: "failure", level: level, stack: test.failed.stack
         unless test.failed == "subtest failures"
-          counts.failed++
+          @counts.failed++
       else
         @result "#{test.name} ( #{test.failed.toString()} )",
           type: "error", level: level, stack: test.failed.stack
-        counts.errored++
+        @counts.errored++
 
-    summary = [
-      @colorize "pass", "Passed: #{counts.passed}"
-    ]
-    if counts.failed > 0
-      summary.push @colorize "failure", "Failed: #{counts.failed}"
-    if counts.errored > 0
-      summary.push @colorize "error", "Errored: #{counts.errored}"
-    if counts.incomplete > 0
-      summary.push @colorize "incomplete", "Incomplete: #{counts.errored}"
-
-    console.log()
-    console.log summary.join("    ")
-
-    if suite.failed && process.exit
-      process.exit(1)
+    #if suite.failed && process.exit
+      #process.exit(1)
 
   collect: (context, array=[]) ->
     array.push(context)
