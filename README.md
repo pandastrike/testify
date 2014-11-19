@@ -86,14 +86,7 @@ Run your test files with the `coffee` executable, or by requiring them, or using
     coffee path/to/test.coffee
     bin/testify -c path/to/test.coffee
 
-## Examples
 
-[Tests for Shred, an HTTP client](https://github.com/automatthew/shred/blob/master/test/shred_test.coffee)
-
-You can also use test nesting with entirely synchronous work, as a way to structure the
-test results:
-
-[Shred's header processing test](https://github.com/automatthew/shred/blob/master/test/headers_test.coffee)
 
 
 
