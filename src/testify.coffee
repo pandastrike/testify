@@ -17,6 +17,7 @@ Testify =
   # set at runtime to modify behavior
   options:
     color: true
+    stack: true
 
   test: (name, fn) ->
     TestContext.options = Testify.options

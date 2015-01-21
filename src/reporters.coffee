@@ -1,7 +1,8 @@
+colors = require "colors"
 
 class ConsoleReporter
 
-  constructor: ({@color})->
+  constructor: ({@color, @stack})->
     @counts =
       passed: 0
       failed: 0
@@ -73,9 +74,12 @@ class ConsoleReporter
         @result test.name, type: "pass", level: level
         @counts.passed++
       else if test.failed.constructor == String || test.failed.name == "AssertionError"
-        @result "#{test.name} ( #{test.failed.toString()} )",
-          type: "failure", level: level, stack: test.failed.stack
-        unless test.failed == "subtest failures"
+        if test.failed == "subtest failures"
+          @result "#{test.name} ( #{test.failed.toString()} )",
+            type: "container", level: level, stack: test.failed.stack
+        else
+          @result "#{test.name} ( #{test.failed.toString()} )",
+            type: "failure", level: level, stack: test.failed.stack
           @counts.failed++
       else
         @result "#{test.name} ( #{test.failed.toString()} )",
@@ -105,7 +109,7 @@ class ConsoleReporter
     console.log(string)
 
     # output first line of stack trace
-    if options.stack
+    if @stack && options.stack
       where = options.stack.split("\n")[1]
       regex = /\((.*)\)/
       match = regex.exec(where)
@@ -116,15 +120,21 @@ class ConsoleReporter
 
   colorize: (type, string) ->
     if @color && color = @color_map[type]
-      string[color]
+      if typeof(color) == "string"
+        string[color]
+      else
+        for value in color
+          string = string[value]
+        string
     else
       string
 
   color_map:
     pass: "green"
     incomplete: "magenta"
-    failure: "red"
+    failure: ["red", "underline"]
     error: "yellow"
+    container: ["red"]
 
 
 
